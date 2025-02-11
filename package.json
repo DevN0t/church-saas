@@ -20,6 +20,8 @@
     "@angular/router": "^19.1.0",
     "embla-carousel": "^8.5.2",
     "ngx-owl-carousel-o": "^19.0.0",
+    "ngx-sonner": "^3.0.0",
+    "ngx-toastr": "^19.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

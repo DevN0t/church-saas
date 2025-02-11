@@ -38,7 +38,8 @@
       <div class="flex flex-col gap-5 ">
         <h1 class="text-5xl font-bold">{{missions.title}}</h1>
         <h3 class="text-lg">{{missions.description}}</h3>
-        <a class="w-fit cursor-pointer text-lg border-b-2 border-transparent hover:border-b-2 hover:border-neutral-600">Saiba mais</a>
+        <a class="w-fit cursor-pointer text-lg "><button class="w-full btn text-lg text-white font-normal btn-wide bg-neutral-800">Saiba mais</button>
+        </a>
       </div>
     </div>
   </div>
@@ -52,14 +53,16 @@
       <div class="flex flex-col gap-5 ">
         <h1 class="text-5xl font-bold">{{worship.title}}</h1>
         <h3 class="text-lg">{{worship.description}}</h3>
-        <a class="w-fit cursor-pointer text-lg border-b-2 border-transparent hover:border-b-2 hover:border-neutral-600">Saiba mais</a>
-      </div>
+        <a class="w-fit cursor-pointer text-lg"><button class="w-full btn text-lg text-white font-normal btn-wide bg-neutral-800">Saiba mais</button>
+        </a>      </div>
     </div>
   </div>
 
 
 
-  <div class="w-full py-20 bg-stone-100 px-56 gap-5 flex flex-col max-xl:px-10">
+
+
+  <div class="w-full py-20  px-56 gap-5 flex flex-col max-xl:px-10">
     <div class="w-full flex flex-col gap-2">
       <h1 class="text-lg">O que nós fazemos?</h1>
       <h1 class="text-5xl font-bold">Eventos da igreja</h1>
@@ -72,10 +75,10 @@
 
       <div class="w-full gap-5 p-10 flex flex-col">
         <div class="flex items-end gap-5 max-xl:flex-col max-xl:items-start">
-          <div class="w-full h-full text-4xl font-semibold">
+          <div class="w-fit h-full text-4xl font-semibold">
             <h1>{{event.title}}</h1>
           </div>
-          <div class="flex h-full">
+          <div class="flex items-end w-fit h-full">
             <h2>{{event.date}}</h2>
           </div>
         </div>

@@ -4,57 +4,19 @@ import {MissionsType} from '../../types/missions.type';
 import {WorshipType} from '../../types/worship.type';
 import {EventsType} from '../../types/events.type';
 import {NgClass, NgForOf, NgIf, NgStyle} from '@angular/common';
+import {PastorType} from '../../types/pastor.type';
 
 @Component({
   selector: 'app-main-page',
   imports: [
     HeaderComponent,
     NgForOf,
-    NgIf,
-    NgClass,
   ],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css',
   standalone: true
 })
-export class MainPageComponent implements OnInit, AfterViewInit {
-
-  @ViewChild('carouselContainer') carouselContainer!: ElementRef;
-
-
-  currentIndex = 0;
-
-  ngAfterViewInit() {
-    this.centerActiveCard(); // Centraliza o card ativo após a inicialização da view
-  }
-
-  nextCard() {
-    this.currentIndex = Math.min(this.currentIndex + 1, this.carouselCards.length - 3);
-    this.centerActiveCard();
-  }
-
-  prevCard() {
-    this.currentIndex = Math.max(this.currentIndex - 1, 0);
-    this.centerActiveCard();
-  }
-
-  centerActiveCard() {
-    setTimeout(() => {
-      const activeCard = this.carouselContainer.nativeElement.querySelector('.snap-start.opacity-100');
-      if (activeCard) {
-        activeCard.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
-      }
-    }, 0); // Use setTimeout para garantir que o DOM esteja atualizado
-  }
-
-
-  carouselCards = [
-    { image: 'image1.jpg', title: 'Card 1', description: 'Description for card 1.' },
-    { image: 'image2.jpg', title: 'Card 2', description: 'Description for card 2.' },
-    { image: 'image3.jpg', title: 'Card 3', description: 'Description for card 3.' },
-    { image: 'image4.jpg', title: 'Card 4', description: 'Description for card 4.' },
-    // ... more cards
-  ];
+export class MainPageComponent implements OnInit  {
 
   churchName = 'Pibaf';
 
@@ -72,6 +34,50 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     description: 'Aqui você encontra todas as informações sobre os cultos da Pibaf',
     image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a1ef8c50af8ccb8c0_image-lr-2.jpg'
   }
+
+  pastors: PastorType[] = [
+    {
+     id: 1,
+     name: 'Pastor 1',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
+      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
+    },
+    {
+      id: 1,
+      name: 'Pastor 1',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
+      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
+    },{
+      id: 1,
+      name: 'Pastor 1',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
+      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
+    },{
+      id: 1,
+      name: 'Pastor 1',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
+      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
+    },{
+      id: 1,
+      name: 'Pastor 1',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
+      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
+    },{
+      id: 1,
+      name: 'Pastor 1',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
+      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
+    },{
+      id: 1,
+      name: 'Pastor 1',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
+      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
+    },{
+      id: 1,
+      name: 'Pastor 1',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
+      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
+    }]
 
   events: EventsType[] = [
     {
