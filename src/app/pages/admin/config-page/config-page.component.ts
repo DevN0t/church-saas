@@ -3,9 +3,8 @@ import {NgIf} from '@angular/common';
 import {NgxSonnerToaster, toast} from 'ngx-sonner';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {UploadService} from '../../../services/upload.service';
-import {BannerService} from '../../../services/banner.service';
-import {ToastrService} from 'ngx-toastr';
 import {Observable, switchMap} from 'rxjs';
+import {BranchService} from '../../../services/branch.service';
 
 @Component({
   selector: 'app-config-page',
@@ -15,30 +14,31 @@ import {Observable, switchMap} from 'rxjs';
     ReactiveFormsModule
   ],
   templateUrl: './config-page.component.html',
-  styleUrl: './config-page.component.css'
+  styleUrls: ['./config-page.component.css']
 })
 export class ConfigPageComponent implements OnInit {
-  bannerForm: FormGroup;
+  branchForm: FormGroup;
   selectedFile: File | null = null;
 
-  bannerImage = '';
+  logoImage: string = ''; // Ensure it's a string, not undefined
   loading: boolean = false;
 
-  constructor(private uploadService: UploadService, private bannerService: BannerService, private toastr: ToastrService) {
-    this.bannerForm = new FormGroup({
-      title: new FormControl('', [Validators.required]),
-      url: new FormControl(''),
-      image: new FormControl('')
+  constructor(private uploadService: UploadService, private branchService: BranchService) {
+    this.branchForm = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      logo: new FormControl('')
     });
   }
 
   ngOnInit(): void {
-
-    this.bannerService.getBanner().subscribe(banner => {
-      this.bannerForm.patchValue(banner);
-      this.bannerImage = banner.image;
+    this.branchService.getBranch().subscribe(branch => {
+      // Fill the form with the branch data
+      this.branchForm.patchValue({
+        name: branch.name, // Ensure the name is being properly set
+        logo: branch.logo // Correctly fill the logo field
+      });
+      this.logoImage = branch.logo; // Store the current logo image
     });
-
   }
 
   onFileChange(event: Event) {
@@ -49,7 +49,7 @@ export class ConfigPageComponent implements OnInit {
   }
 
   submit() {
-    if (!this.bannerForm.valid) {
+    if (!this.branchForm.valid) {
       console.error('Form is invalid');
       return;
     }
@@ -58,30 +58,32 @@ export class ConfigPageComponent implements OnInit {
     let updateObservable: Observable<any>;
 
     if (this.selectedFile) {
+      // If a new file is selected, upload it first
       updateObservable = this.uploadService.upload(this.selectedFile).pipe(
         switchMap(response => {
-          this.bannerForm.patchValue({image: response.response.url});
-          return this.bannerService.updateBanner(this.bannerForm.value);
+          this.branchForm.patchValue({
+
+            logo: response.response.url});
+          return this.branchService.updateBranch(this.branchForm.value);
         })
       );
     } else {
-      this.bannerForm.patchValue({image: this.bannerImage});
-      updateObservable = this.bannerService.updateBanner(this.bannerForm.value);
-
+      // No file selected, just keep the existing logo
+      this.branchForm.patchValue({
+        logo: this.logoImage});
+      updateObservable = this.branchService.updateBranch(this.branchForm.value);
     }
 
     updateObservable.subscribe({
       next: response => {
-
-        toast.success('Banner updated successfully');
+        toast.success('Configurações atualizadas');
         this.loading = false;
         setTimeout(() => {
-          window.location.reload();
         }, 2000);
-
       },
       error: error => {
         console.error('Update failed', error);
+        this.loading = false;
       }
     });
   }

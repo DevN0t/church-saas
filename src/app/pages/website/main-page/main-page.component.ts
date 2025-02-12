@@ -150,7 +150,7 @@ export class MainPageComponent implements OnInit  {
 
 
   getBranch(){
-    this.branchService.getBranch(this.currentURL = window.location.href).subscribe(
+    this.branchService.getBranchPublic(this.currentURL = window.location.href).subscribe(
       branch => {
         this.branch.id = branch.id;
         this.branch.logo = branch.logo;

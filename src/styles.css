@@ -10,6 +10,8 @@ html, body {
   @apply text-neutral-800;
   @apply bg-white;
 
+  min-height: 100svh;
+
   background-color: white;
   font-family: Poppins,sans-serif;
 }
