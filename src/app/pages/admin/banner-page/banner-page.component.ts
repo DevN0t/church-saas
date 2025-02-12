@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UploadService } from '../../services/upload.service';
-import {BannerService} from '../../services/banner.service';
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import { UploadService } from '../../../services/upload.service';
+import {BannerService} from '../../../services/banner.service';
 import {Observable, switchMap} from 'rxjs';
 import {NgIf} from '@angular/common';
 import {ToastrService} from 'ngx-toastr';
@@ -23,7 +23,7 @@ export class BannerPageComponent implements OnInit{
 
   constructor(private uploadService: UploadService, private bannerService: BannerService, private toastr: ToastrService) {
     this.bannerForm = new FormGroup({
-      title: new FormControl(''),
+      title: new FormControl('', [Validators.required]),
       url: new FormControl(''),
       image: new FormControl('')
     });
@@ -74,7 +74,7 @@ export class BannerPageComponent implements OnInit{
         this.loading = false;
         setTimeout(() => {
           window.location.reload();
-        }, 3000);
+        }, 2000);
 
       },
       error: error => {

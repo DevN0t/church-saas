@@ -1,10 +1,12 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {HeaderComponent} from '../../components/header/header.component';
-import {MissionsType} from '../../types/missions.type';
-import {WorshipType} from '../../types/worship.type';
-import {EventsType} from '../../types/events.type';
+import {HeaderComponent} from '../../../components/website/header/header.component';
+import {MissionsType} from '../../../types/missions.type';
+import {WorshipType} from '../../../types/worship.type';
+import {EventsType} from '../../../types/events.type';
 import {NgClass, NgForOf, NgIf, NgStyle} from '@angular/common';
-import {PastorType} from '../../types/pastor.type';
+import {PastorType} from '../../../types/pastor.type';
+import {BranchType} from '../../../types/branch.type';
+import {BranchService} from '../../../services/branch.service';
 
 @Component({
   selector: 'app-main-page',
@@ -19,6 +21,20 @@ import {PastorType} from '../../types/pastor.type';
 export class MainPageComponent implements OnInit  {
 
   churchName = 'Pibaf';
+
+  branch: BranchType = {
+    id: 1,
+    logo: '',
+    name: '',
+    url: '',
+
+  };
+
+  currentURL='';
+
+  constructor(private brancheService: BranchService) {
+  }
+
 
 
   missions: MissionsType = {
@@ -117,7 +133,20 @@ export class MainPageComponent implements OnInit  {
   truncateContent(content: string, limit: number = 300): string {
     return content.length > limit ? content.substring(0, limit) + '...' : content;
   }
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+    this.brancheService.getBranch(this.currentURL = window.location.href).subscribe(
+      branch => {
+        this.branch.id = branch.id;
+        this.branch.logo = branch.logo;
+        this.branch.url = branch.url;
+        this.branch.name = branch.name;
+
+        console.log(branch);
+      }
+
+    );
+  }
 
 
 

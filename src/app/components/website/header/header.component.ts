@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -14,4 +14,6 @@ export class HeaderComponent {
     this.isMenuOpen = !this.isMenuOpen; // Alterna a visibilidade do menu
   }
 
+
+  @Input() logo! : string;
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {LoginService} from '../../services/login.service';
+import {LoginService} from '../../../services/login.service';
 
 @Component({
   selector: 'app-login',
