@@ -8,27 +8,33 @@ import {MessageType} from '../types/message.type';
 })
 export class BannerService {
 
-  private apiUrl = 'http://localhost:8090/banner/';
+  private apiUrl = 'http://localhost:8090';
+
 
   constructor(private httpClient: HttpClient) {
 
   }
 
   getBanner() {
-    return this.httpClient.get<BannerType>(this.apiUrl, {
+    return this.httpClient.get<BannerType>(this.apiUrl + '/banner/', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('authToken')}`
       }
+    });
+  }
+
+  getBannerPublic() {
+
+    const alias = localStorage.getItem('alias')
+    return this.httpClient.get<BannerType>(this.apiUrl + '/public/banner/?alias=' + alias, {
     });
   }
 
   updateBanner(banner: BannerType) {
-    return this.httpClient.put<MessageType>(this.apiUrl, banner, {
+    return this.httpClient.put<MessageType>(this.apiUrl + '/banner/', banner, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('authToken')}`
       }
     });
   }
-
-
 }

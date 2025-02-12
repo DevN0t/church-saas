@@ -7,12 +7,15 @@ import {NgClass, NgForOf, NgIf, NgStyle} from '@angular/common';
 import {PastorType} from '../../../types/pastor.type';
 import {BranchType} from '../../../types/branch.type';
 import {BranchService} from '../../../services/branch.service';
+import {BannerType} from '../../../types/banner.type';
+import {BannerService} from '../../../services/banner.service';
 
 @Component({
   selector: 'app-main-page',
   imports: [
     HeaderComponent,
     NgForOf,
+    NgStyle,
   ],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css',
@@ -27,12 +30,23 @@ export class MainPageComponent implements OnInit  {
     logo: '',
     name: '',
     url: '',
+    alias: ''
 
   };
 
   currentURL='';
 
-  constructor(private brancheService: BranchService) {
+  constructor(
+    private branchService: BranchService,
+    private bannerService: BannerService) {
+  }
+
+  banner: BannerType = {
+    subtitle: '',
+    image: '',
+    id: 1,
+    title: '',
+    url: ''
   }
 
 
@@ -134,21 +148,31 @@ export class MainPageComponent implements OnInit  {
     return content.length > limit ? content.substring(0, limit) + '...' : content;
   }
 
-  ngOnInit(): void {
-    this.brancheService.getBranch(this.currentURL = window.location.href).subscribe(
+
+  getBranch(){
+    this.branchService.getBranch(this.currentURL = window.location.href).subscribe(
       branch => {
         this.branch.id = branch.id;
         this.branch.logo = branch.logo;
         this.branch.url = branch.url;
         this.branch.name = branch.name;
+        this.branch.alias = branch.alias;
 
-        console.log(branch);
+        localStorage.setItem('alias', branch.alias);
       }
-
     );
   }
 
+  getBanner(){
+    this.bannerService.getBannerPublic().subscribe(
+      banner => {
+        this.banner = banner;
+      }
+    )
+  }
 
-
-
+  ngOnInit(): void {
+    this.getBranch();
+    this.getBanner();
+  }
 }

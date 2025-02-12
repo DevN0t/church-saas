@@ -1,36 +1,18 @@
 <div [formGroup]="bannerForm" class="w-[calc(100svw)] mt-5 py-10 max-sm:px-10 max-xl:px-20  h-full items-center gap-2 flex flex-col">
   <div class="w-2/3 max-xl:w-full flex flex-col justify-center">
-    <div class="w-full text-2xl">Banner</div>
-    <div class="w-full text-lg text-neutral-400">Ajuste de Banner</div>
+    <div class="w-full text-2xl">Configurações</div>
+    <div class="w-full text-lg text-neutral-400">Ajustes da Base</div>
   </div>
   <div class="max-xl:w-full w-2/3  flex justify-center flex-col h-full gap-4 items-center">
 
     <div class="w-full flex justify-end">
       <label class="form-control max-xl:w-full w-1/2 flex gap-1 flex-col items-start">
         <div class="label p-0">
-          <span class="label-text text-neutral-600">Título</span>
+          <span class="label-text text-neutral-600">Nome de exibição</span>
           <span class="text-red-400">*</span>
 
         </div>
-        <input [(ngModel)]="title" (input)="countTitle()" formControlName="title" type="text" placeholder="Informe o título do banner" class="input bg-white input-md input-bordered w-full" />
-        <div class="w-full flex flex-col items-end justify-end mt-2">
-          <p
-            class="text-sm text-gray-600"
-            [ngClass]="{'text-red-500': countTitle() > limiteCaracteres}">
-            {{ countTitle() }}/{{ limiteCaracteres }}
-          </p>
-        </div>
-
-      </label>
-    </div>
-
-    <div class="w-full flex justify-end">
-      <label class="form-control max-xl:w-full w-1/2 flex gap-1 flex-col items-start">
-        <div class="label p-0 ">
-          <span class="label-text text-neutral-600">URL de redirecionamento</span>
-          <span class="text-red-400">*</span>
-        </div>
-        <input formControlName="subtitle" type="text" placeholder="Informe um subtítulo" class="input input-md bg-white input-bordered w-full" />
+        <input formControlName="title" type="text" placeholder="Informe o nome de exibição desejado" class="input bg-white input-md input-bordered w-full" />
       </label>
     </div>
 
@@ -47,7 +29,7 @@
     <div class="w-full flex justify-end">
       <label class="form-control max-xl:w-full w-1/2 flex flex-col gap-1 items-start">
         <div class="label p-0">
-          <span class="label-text text-neutral-600">Foto</span>
+          <span class="label-text text-neutral-600">Logo</span>
           <span class="text-red-400">*</span>
         </div>
         <div class="w-full flex justify-end">

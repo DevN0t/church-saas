@@ -1,40 +1,35 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import { UploadService } from '../../../services/upload.service';
-import {BannerService} from '../../../services/banner.service';
-import {Observable, switchMap} from 'rxjs';
-import {NgClass, NgIf} from '@angular/common';
+import {NgIf} from '@angular/common';
 import {NgxSonnerToaster, toast} from 'ngx-sonner';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {UploadService} from '../../../services/upload.service';
+import {BannerService} from '../../../services/banner.service';
+import {ToastrService} from 'ngx-toastr';
+import {Observable, switchMap} from 'rxjs';
 
 @Component({
-  selector: 'app-banner-page',
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, NgIf, NgxSonnerToaster, NgClass],
-  templateUrl: './banner-page.component.html',
-  styleUrl: './banner-page.component.css'
+  selector: 'app-config-page',
+  imports: [
+    NgIf,
+    NgxSonnerToaster,
+    ReactiveFormsModule
+  ],
+  templateUrl: './config-page.component.html',
+  styleUrl: './config-page.component.css'
 })
-export class BannerPageComponent implements OnInit{
+export class ConfigPageComponent implements OnInit {
   bannerForm: FormGroup;
   selectedFile: File | null = null;
 
   bannerImage = '';
   loading: boolean = false;
 
-  constructor(private uploadService: UploadService, private bannerService: BannerService) {
+  constructor(private uploadService: UploadService, private bannerService: BannerService, private toastr: ToastrService) {
     this.bannerForm = new FormGroup({
-      title: new FormControl('', [Validators.required, Validators.maxLength(100)]),
+      title: new FormControl('', [Validators.required]),
       url: new FormControl(''),
-      image: new FormControl(''),
-      subtitle: new FormControl('', [Validators.required]),
+      image: new FormControl('')
     });
-  }
-
-  title: string = '';
-  limiteCaracteres: number = 100;
-
-  // Função para contar os caracteres
-  countTitle() {
-    return this.title.length;
   }
 
   ngOnInit(): void {
@@ -65,12 +60,12 @@ export class BannerPageComponent implements OnInit{
     if (this.selectedFile) {
       updateObservable = this.uploadService.upload(this.selectedFile).pipe(
         switchMap(response => {
-          this.bannerForm.patchValue({ image: response.response.url });
+          this.bannerForm.patchValue({image: response.response.url});
           return this.bannerService.updateBanner(this.bannerForm.value);
         })
       );
     } else {
-      this.bannerForm.patchValue({ image: this.bannerImage });
+      this.bannerForm.patchValue({image: this.bannerImage});
       updateObservable = this.bannerService.updateBanner(this.bannerForm.value);
 
     }
@@ -90,5 +85,4 @@ export class BannerPageComponent implements OnInit{
       }
     });
   }
-
 }

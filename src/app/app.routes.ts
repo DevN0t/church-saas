@@ -6,6 +6,7 @@ import {BannerPageComponent} from './pages/admin/banner-page/banner-page.compone
 import {MissionsPageComponent} from './pages/admin/missions-page/missions-page.component';
 import {MainDashboardPageComponent} from './pages/admin/main-dashboard-page/main-dashboard-page.component';
 import {AuthGuard} from './infra/authguard';
+import {ConfigPageComponent} from './pages/admin/config-page/config-page.component';
 
 export const routes: Routes = [
   {
@@ -24,6 +25,9 @@ export const routes: Routes = [
       },
       {
         path: '', component: MainDashboardPageComponent
+      },
+      {
+        path: 'config', component: ConfigPageComponent
       }
     ]
   }
