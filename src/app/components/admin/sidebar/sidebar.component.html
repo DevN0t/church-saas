@@ -1,58 +1,121 @@
-<div class="drawer">
-  <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-  <div class="drawer-content flex justify-between">
-    <!-- Page content here -->
-      <label for="my-drawer" class="drawer-button hover:cursor-pointer hover:bg-neutral-200 p-1 px-2 rounded-lg">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#00000"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
-      </label>
+<div class="flex">
+  <!-- Sidebar -->
+  <div *ngIf="isSidebarOpen" class="fixed inset-0 bg-black bg-opacity-50 z-50" (click)="isSidebarOpen = false"></div>
+  <div [ngClass]="{'translate-x-0': isSidebarOpen, '-translate-x-full': !isSidebarOpen}" class="fixed left-0 top-0 h-full w-72 bg-white shadow-lg z-50 p-5 flex flex-col transform transition-transform duration-300 ease-in-out">
 
+    <div class="flex items-center gap-3 w-full justify-between mb-5 ">
+      <img class="max-w-[40px] h-fit" src="{{branch.logo}}" alt="logo">
+      <button (click)="isSidebarOpen = false" class="self-end p-2 text-xl text-neutral-400 hover:text-black">
+        &times;
+      </button>    </div>
+    <ul class="space-y-3 text-sm mt-10">
+      <div data-sidebar="group-label" class="duration-200 flex h-8 shrink-0 items-center rounded-md px-2 text-xs text-neutral-500 font-medium text-sidebar-foreground/70 outline-none ring-sidebar-ring transition-[margin,opa] ease-linear focus-visible:ring-2 [&amp;>svg]:size-4 [&amp;>svg]:shrink-0 group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0">
+        Links Rápidos
+      </div>
+      <li (click)="navigateTo('/dashboard/')" class="mt-2 w-full flex hover:underline text-neutral-500">
+        <a class="items-center hover:cursor-pointer whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-950 text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 h-9 w-full shadow-none p-2 flex justify-start gap-2 " type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="#5f6368" viewBox="0 0 256 256" class="w-4 h-4"><path d="M128,24h0A104,104,0,1,0,232,128,104.12,104.12,0,0,0,128,24Zm88,104a87.61,87.61,0,0,1-3.33,24H174.16a157.44,157.44,0,0,0,0-48h38.51A87.61,87.61,0,0,1,216,128ZM102,168H154a115.11,115.11,0,0,1-26,45A115.27,115.27,0,0,1,102,168Zm-3.9-16a140.84,140.84,0,0,1,0-48h59.88a140.84,140.84,0,0,1,0,48ZM40,128a87.61,87.61,0,0,1,3.33-24H81.84a157.44,157.44,0,0,0,0,48H43.33A87.61,87.61,0,0,1,40,128ZM154,88H102a115.11,115.11,0,0,1,26-45A115.27,115.27,0,0,1,154,88Zm52.33,0H170.71a135.28,135.28,0,0,0-22.3-45.6A88.29,88.29,0,0,1,206.37,88ZM107.59,42.4A135.28,135.28,0,0,0,85.29,88H49.63A88.29,88.29,0,0,1,107.59,42.4ZM49.63,168H85.29a135.28,135.28,0,0,0,22.3,45.6A88.29,88.29,0,0,1,49.63,168Zm98.78,45.6a135.28,135.28,0,0,0,22.3-45.6h35.66A88.29,88.29,0,0,1,148.41,213.6Z"></path></svg>
+            <p class=" hover:underline text-neutral-500">Home</p></a>
+      </li>
+      <li (click)="navigateTo('/dashboard/banner')" class=" w-full flex hover:underline text-neutral-500">
+        <a class="items-center hover:cursor-pointer whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-950 text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 h-9 w-full shadow-none p-2 flex justify-start gap-2 " type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="#5f6368" viewBox="0 0 256 256" class="w-4 h-4">
+            <path d="M200,40H56A16,16,0,0,0,40,56V200a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40ZM56,56h64V200H56ZM200,200H136V56h64V200Z">
+            </path></svg><p class=" hover:underline text-neutral-500">Banner</p></a>
+      </li>
+      <li (click)="navigateTo('/dashboard/layout')" class=" w-full flex hover:underline text-neutral-500">
+        <a class="items-center hover:cursor-pointer whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-950 text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 h-9 w-full shadow-none p-2 flex justify-start gap-2 " type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 256 256" class="w-4 h-4"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,16V96H40V56ZM40,112H96v88H40Zm176,88H112V112H216v88Z"></path></svg>
+          <p class=" hover:underline text-neutral-500">Alterações de Layout</p></a>
+      </li>
 
-    <div class="w-fit flex ">
-      <ul class="w-full flex gap-10">
-        <button class="w-full border-[calc(1px)] border-neutral-300 hover:bg-neutral-200 p-2 rounded-lg">
-          <a href="{{branch.url}}" class="w-full text-neutral-400">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill=" #626262 "><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm-40-82v-78q-33 0-56.5-23.5T360-320v-40L168-552q-3 18-5.5 36t-2.5 36q0 121 79.5 212T440-162Zm276-102q41-45 62.5-100.5T800-480q0-98-54.5-179T600-776v16q0 33-23.5 56.5T520-680h-80v80q0 17-11.5 28.5T400-560h-80v80h240q17 0 28.5 11.5T600-440v120h40q26 0 47 15.5t29 40.5Z"/></svg>          </a>
-        </button>
-        <button (click)="navigateTo('/dashboard/config')" class="w-full border-[calc(1px)] border-neutral-300 hover:bg-neutral-200 p-2 rounded-lg">
-          <li class="w-full text-neutral-400">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill=" #626262 "><path d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z"/></svg>
+      <li class="w-full">
+        <div (click)="isMinistryOpen = !isMinistryOpen" class="flex items-center justify-between cursor-pointer p-2 text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 rounded-md">
+          <div class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="#5f6368" viewBox="0 0 256 256" class="w-4 h-4">
+              <path d="M200,40H56A16,16,0,0,0,40,56V200a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40ZM56,56h64V200H56ZM200,200H136V56h64V200Z"></path>
+            </svg>
+            <p class="hover:underline text-neutral-500">Ministérios</p>
+          </div>
+          <svg [ngClass]="{'rotate-180': isMinistryOpen}" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 256 256" class="w-4 h-4 transition-transform">
+            <path d="M128,176a8,8,0,0,1-5.66-2.34l-72-72a8,8,0,0,1,11.32-11.32L128,158.34l66.34-66.34a8,8,0,0,1,11.32,11.32l-72,72A8,8,0,0,1,128,176Z"></path>
+          </svg>
+        </div>
+
+        <ul *ngIf="isMinistryOpen" class="pl-6 mt-2 space-y-2">
+          <li (click)="navigateTo('/dashboard/missions')" class="w-full flex hover:underline text-neutral-500">
+            <a class="items-center hover:cursor-pointer whitespace-nowrap rounded-md text-sm font-medium transition-colors text-neutral-500 hover:bg-neutral-100  h-9 w-full shadow-none p-2 flex justify-start gap-2">
+              <p>Ajuste de Ministérios</p>
+            </a>
           </li>
-        </button>
+          <li (click)="navigateTo('/dashboard/services')" class="w-full flex hover:underline text-neutral-500">
+            <a class="items-center hover:cursor-pointer whitespace-nowrap rounded-md text-sm font-medium transition-colors text-neutral-500 hover:bg-neutral-100  h-9 w-full shadow-none p-2 flex justify-start gap-2">
+              <p>Ministérios</p>
+            </a>
+          </li>
+        </ul>
+      </li>
 
+      <li (click)="navigateTo('/dashboard/missions')" class=" w-full flex hover:underline text-neutral-500">
+      <a class="items-center hover:cursor-pointer whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-950 text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 h-9 w-full shadow-none p-2 flex justify-start gap-2 " type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="#5f6368" viewBox="0 0 256 256" class="w-4 h-4">
+          <path d="M200,40H56A16,16,0,0,0,40,56V200a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40ZM56,56h64V200H56ZM200,200H136V56h64V200Z">
+          </path></svg><p class=" hover:underline text-neutral-500">Banners Rotativos</p></a></li>
 
-        <li class="w-full text-nowrap">
-          usuario aqui
+      <li (click)="navigateTo('/dashboard/missions')" class=" w-full flex hover:underline text-neutral-500">
+        <a class="items-center hover:cursor-pointer whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-950 text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 h-9 w-full shadow-none p-2 flex justify-start gap-2 " type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="#5f6368" viewBox="0 0 256 256" class="w-4 h-4">
+            <path d="M200,40H56A16,16,0,0,0,40,56V200a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40ZM56,56h64V200H56ZM200,200H136V56h64V200Z">
+            </path></svg><p class="hover:underline text-neutral-500">Banners Rotativos</p></a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Navbar -->
+  <div class="navbar bg-white w-full shadow-xs px-5 flex justify-between items-center">
+    <button (click)="isSidebarOpen = !isSidebarOpen" class="p-2 px-3 rounded-xl border-[1px] text-center text-neutral-500 font-bold hover:text-black">
+      &#9776;
+    </button>
+    <div class="flex gap-5">
+      <div class="w-1/2 flex items-center h-full justify-end">
+        <ul class="w-full h-full items-center flex gap-5 justify-end">
+          <div class="tooltip tooltip-bottom " data-tip="Voltar para o website">
+          <button title="Voltar para o website" class="w-fit h-fit border-[calc(1px)] border-neutral-300 hover:bg-neutral-200 p-2 rounded-lg">
+
+            <a href="{{branch.url}}" class="w-full h-full flex justify-center text-neutral-400">
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px" fill="#626262" viewBox="0 0 256 256" ><path d="M245.11,60.68c-7.65-13.19-27.84-16.16-58.5-8.66A95.93,95.93,0,0,0,32,128a98,98,0,0,0,.78,12.31C5.09,169,5.49,186,10.9,195.32,16,204.16,26.64,208,40.64,208a124.11,124.11,0,0,0,28.79-4A95.93,95.93,0,0,0,224,128a97.08,97.08,0,0,0-.77-12.25c12.5-13,20.82-25.35,23.65-35.92C248.83,72.51,248.24,66.07,245.11,60.68ZM128,48a80.11,80.11,0,0,1,78,62.2c-17.06,16.06-40.15,32.53-62.07,45.13C116.38,171.14,92.48,181,73.42,186.4A79.94,79.94,0,0,1,128,48ZM24.74,187.29c-1.46-2.51-.65-7.24,2.22-13a79.05,79.05,0,0,1,10.29-15.05,96,96,0,0,0,18,31.32C38,193.46,27.24,191.61,24.74,187.29ZM128,208a79.45,79.45,0,0,1-38.56-9.94,370,370,0,0,0,62.43-28.86c21.58-12.39,40.68-25.82,56.07-39.08A80.07,80.07,0,0,1,128,208ZM231.42,75.69c-1.7,6.31-6.19,13.53-12.63,21.13a95.69,95.69,0,0,0-18-31.35c14.21-2.35,27.37-2.17,30.5,3.24C232.19,70.28,232.24,72.63,231.42,75.69Z"></path></svg>
+            </a>
+          </button>
+          </div>
+
+          <div class="tooltip tooltip-bottom " data-tip="Configurações">
+
+          <button title="Configurações" (click)="navigateTo('/dashboard/config')" class="w-fit h-fit border-[calc(1px)] border-neutral-300 hover:bg-neutral-200 p-2 rounded-lg">
+            <li class="w-full flex justify-center text-neutral-400">
+              <svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="22px" fill=" #626262"><path d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z"/></svg>
+            </li>
+          </button>
+          </div>
+        </ul>
+      </div>
+
+      <div class="dropdown dropdown-end">
+
+      <div tabindex="0" role="button" class="btn bg-white h-full w-full flex justify-center items-center btn-ghost btn-circle avatar">
+        <div class="avatar rounded-xl w-[40px] h-[40px]">
+          <img class="object-contain" src="{{profile.avatar}}" />
+        </div>
+      </div>
+      <ul tabindex="0" class="menu menu-md dropdown-content bg-white rounded-box z-[1] mt-1 w-64 p-2 shadow">
+        <a class="border-t-neutral-100 border-b-[1px] w-full px-4 py-2">{{profile.name}}</a>
+        <li class="py-2" (click)="navigateTo('/dashboard/profile')">
+          <a class="w-full justify-between">Perfil</a>
+        </li>
+        <li class="w-full flex justify-between" (click)="logout()">
+          <a class="w-full flex justify-between">Logout</a>
         </li>
       </ul>
     </div>
-
-  </div>
-  <div class="drawer-side ">
-    <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-    <ul class="menu bg-white h-full text-base-content min-h-full w-80 p-4">
-      <div class="py-3 w-full flex justify-center select-none font-bold text-2xl text-amber-500 border-b-[calc(.5px)] border-neutral-300">ryvo</div>
-      <div class="px-4 mt-10 w-full flex justify-start select-none text-sm text-neutral-500">Links Rápidos</div>
-
-      <li (click)="navigateTo('/dashboard/')" class="mt-2 text-neutral-600"><a class="py-2">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
-        Home
-      </a>
-      </li>
-      <li (click)="navigateTo('/dashboard/banner')" class=" text-neutral-600"><a class="py-2">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h480q33 0 56.5 23.5T800-800v640q0 33-23.5 56.5T720-80H240Zm0-80h480v-640H240v640Zm40-80h400L542-420l-92 120-62-80-108 140Zm-40 80v-640 640Z"/></svg>
-        Banner
-      </a>
-      </li>
-      <li (click)="navigateTo('/dashboard/missions')" class="text-neutral-600"><a class="py-2">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Z"/></svg>        Eventos</a></li>
-      <li (click)="navigateTo('/dashboard/missions')" class="text-neutral-600"><a class="py-2">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-156t86-127Q252-817 325-848.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82-31.5 155T763-197.5q-54 54.5-127 86T480-80Zm0-720q-111 0-196 66.5T171-564q20-5 41.5-19.5T262-654q15-31 44-48.5t64-17.5h220q35 0 64 17.5t44 48.5q28 57 50.5 71t40.5 19q-28-103-112.5-169.5T480-800Zm0 640q134 0 227.5-94T800-482q-71-7-109-44.5T626-618q-5-11-14.5-16.5T591-640H370q-12 0-21.5 5.5T334-618q-27 55-66 92.5T160-481q0 134 93.5 227.5T480-160ZM360-390q-21 0-35.5-14.5T310-440q0-21 14.5-35.5T360-490q21 0 35.5 14.5T410-440q0 21-14.5 35.5T360-390Zm240 0q-21 0-35.5-14.5T550-440q0-21 14.5-35.5T600-490q21 0 35.5 14.5T650-440q0 21-14.5 35.5T600-390ZM480-720Z"/></svg>        Pastores</a></li>
-      <li (click)="navigateTo('/dashboard/missions')" class="text-neutral-600"><a class="py-2">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h440l200 200v440q0 33-23.5 56.5T760-120H200Zm0-80h560v-400H600v-160H200v560Zm80-80h400v-80H280v80Zm0-320h200v-80H280v80Zm0 160h400v-80H280v80Zm-80-320v160-160 560-560Z"/></svg>        Noticias</a></li>
-      <li (click)="logout()" class="text-neutral-600 w-full pr-8 absolute bottom-5"><a class="py-2">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg>Sair </a></li>
-
-
-    </ul>
   </div>
 </div>

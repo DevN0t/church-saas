@@ -17,20 +17,28 @@ export class BannerPageComponent implements OnInit{
   bannerForm: FormGroup;
   selectedFile: File | null = null;
 
+  title: string = '';
+  limiteCaracteres: number = 50;
   bannerImage = '';
   loading: boolean = false;
 
+
+  subtitle: string = '';
+  subtitlelimiteCaracteres: number = 150;
+
   constructor(private uploadService: UploadService, private bannerService: BannerService) {
     this.bannerForm = new FormGroup({
-      title: new FormControl('', [Validators.required, Validators.maxLength(100)]),
+      title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
       url: new FormControl(''),
       image: new FormControl(''),
       subtitle: new FormControl('', [Validators.required]),
     });
   }
 
-  title: string = '';
-  limiteCaracteres: number = 100;
+  countSubitle() {
+    return this.subtitle.length;
+  }
+
 
   // Função para contar os caracteres
   countTitle() {

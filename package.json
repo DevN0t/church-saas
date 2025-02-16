@@ -11,6 +11,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^19.1.0",
+    "@angular/cdk": "18.0.0",
     "@angular/common": "^19.1.0",
     "@angular/compiler": "^19.1.0",
     "@angular/core": "^19.1.0",
@@ -18,11 +19,21 @@
     "@angular/platform-browser": "^19.1.0",
     "@angular/platform-browser-dynamic": "^19.1.0",
     "@angular/router": "^19.1.0",
+    "@ng-icons/core": ">=29.0.0",
+    "@ng-icons/lucide": ">=29.0.0",
+    "@spartan-ng/brain": "0.0.1-alpha.403",
+    "aos": "^3.0.0-beta",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "embla-carousel": "^8.5.2",
+    "embla-carousel-angular": "18.0.0",
+    "ngx-color-picker": "^17.0.0",
+    "ngx-image-cropper": "^9.1.1",
     "ngx-owl-carousel-o": "^19.0.0",
     "ngx-sonner": "^3.0.0",
     "ngx-toastr": "^19.0.0",
     "rxjs": "~7.8.0",
+    "swiper": "^11.2.3",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },
@@ -30,6 +41,8 @@
     "@angular-devkit/build-angular": "^19.1.5",
     "@angular/cli": "^19.1.5",
     "@angular/compiler-cli": "^19.1.0",
+    "@spartan-ng/cli": "^0.0.1-alpha.402",
+    "@types/aos": "^3.0.7",
     "@types/jasmine": "~5.1.0",
     "daisyui": "^4.12.23",
     "jasmine-core": "~5.5.0",
@@ -38,7 +51,9 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "tailwind-merge": "^2.2.0",
     "tailwindcss": "^3.4.17",
+    "tailwindcss-animate": "^1.0.6",
     "typescript": "~5.7.2"
   }
 }

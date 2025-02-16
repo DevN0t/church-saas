@@ -1,0 +1,32 @@
+<div class="flex flex-col min-h-screen px-10 w-full" [ngStyle]="{'background-color': layout.bgColor}">
+
+  <div data-aos="fade-up" class="w-full h-[70vh] bg-cover bg-center rounded-2xl mt-20">
+    <div  class="w-full h-full bg-black bg-opacity-70 gap-4 flex flex-col rounded-2xl justify-center items-center px-56 max-xl:px-10">
+      <h1 data-aos="fade-down" data-aos-delay="600" class="w-full max-md:text-4xl max-sm:text-3xl text-center max-sm:w-full text-5xl  font-medium" [ngStyle]="{'color': layout.bannerFontColor}">
+        Ministérios
+      </h1>
+      <hr class="w-10 border-[1px]">
+    </div>
+  </div>
+  <div class="w-full flex justify-center" *ngFor="let mission of missions">
+
+    <div data-aos="fade-right" class="w-2/3 py-10 border-[1px] rounded-2xl px-10 max-xl:px-0 max-xl:gap-5 gap-20 mt-10 flex max-xl:flex-col justify-center">
+      <div class="w-1/2 flex justify-center ">
+        <img class="w-full rounded-xl" src="{{mission.image}}">
+      </div>
+      <div class="flex gap-5 justify-center flex-col w-full">
+        <a class="font-light" [ngStyle]="{'color': layout.fontHighlightColor}"> Veja os ministérios</a>
+        <div class="flex flex-col gap-5 " [ngStyle]="{'color': layout.fontColor}">
+          <h1 class="text-5xl font-medium">{{mission.title}}</h1>
+          <h3 class="text-lg">{{mission.description}}</h3>
+          <a class="w-fit cursor-pointer text-lg"><button class="w-full btn text-lg  bg-neutral-800 font-normal text-white" >Saiba mais</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>

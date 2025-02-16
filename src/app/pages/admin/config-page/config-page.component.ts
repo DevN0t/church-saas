@@ -14,6 +14,7 @@ import {BranchService} from '../../../services/branch.service';
     ReactiveFormsModule
   ],
   templateUrl: './config-page.component.html',
+  standalone: true,
   styleUrls: ['./config-page.component.css']
 })
 export class ConfigPageComponent implements OnInit {
@@ -76,7 +77,7 @@ export class ConfigPageComponent implements OnInit {
 
     updateObservable.subscribe({
       next: response => {
-        toast.success('Configurações atualizadas');
+        toast.success(response.message || 'Configurações atualizadas com sucesso!');
         this.loading = false;
         setTimeout(() => {
         }, 2000);

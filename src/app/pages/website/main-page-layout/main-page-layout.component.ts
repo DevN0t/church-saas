@@ -1,32 +1,31 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {HeaderComponent} from '../../../components/website/header/header.component';
+import {RouterOutlet} from '@angular/router';
+import {BranchService} from '../../../services/branch.service';
+import {BannerService} from '../../../services/banner.service';
+import {LayoutService} from '../../../services/layout.service';
+import {LayoutType} from '../../../types/layout.type';
+import {BannerType} from '../../../types/banner.type';
+import {CarouselComponent} from '../../../components/website/carousel/carousel.component';
+import {NgForOf, NgStyle} from '@angular/common';
 import {MissionsType} from '../../../types/missions.type';
 import {WorshipType} from '../../../types/worship.type';
-import {EventsType} from '../../../types/events.type';
-import {NgForOf, NgIf, NgStyle} from '@angular/common';
 import {PastorType} from '../../../types/pastor.type';
-import {BranchType} from '../../../types/branch.type';
-import {BranchService} from '../../../services/branch.service';
-import {BannerType} from '../../../types/banner.type';
-import {BannerService} from '../../../services/banner.service';
-import {LayoutType} from '../../../types/layout.type';
-import {LayoutService} from '../../../services/layout.service';
-import {CarouselComponent} from '../../../components/website/carousel/carousel.component';
+import {EventsType} from '../../../types/events.type';
 import AOS from 'aos';
-import {RouterOutlet} from '@angular/router';
-
 
 @Component({
-  selector: 'app-main-page',
+  selector: 'app-main-page-layout',
   imports: [
-    HeaderComponent,
-    RouterOutlet,
+    CarouselComponent,
+    NgForOf,
+    NgStyle
   ],
-  templateUrl: './main-page.component.html',
-  styleUrl: './main-page.component.css',
-  standalone: true
+  templateUrl: './main-page-layout.component.html',
+  standalone: true,
+  styleUrl: './main-page-layout.component.css'
 })
-export class MainPageComponent implements AfterViewInit, OnInit{
+export class MainPageLayoutComponent implements AfterViewInit, OnInit{
 
   missions: MissionsType = {
     id:1,
@@ -44,8 +43,8 @@ export class MainPageComponent implements AfterViewInit, OnInit{
 
   pastors: PastorType[] = [
     {
-     id: 1,
-     name: 'Pastor 1',
+      id: 1,
+      name: 'Pastor 1',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
       image:     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8FUq-nmpkWojW1bjk8F5uF55ys93JEIOdTg&s',
     },
@@ -202,4 +201,5 @@ export class MainPageComponent implements AfterViewInit, OnInit{
   ngAfterViewInit(): void {
     AOS.refresh();
   }
+
 }

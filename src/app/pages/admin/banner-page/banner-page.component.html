@@ -1,18 +1,18 @@
-<div [formGroup]="bannerForm" class="w-[calc(100svw)] mt-5 py-10 max-sm:px-10 max-xl:px-20 items-center gap-2 flex flex-col">
+<div [formGroup]="bannerForm" class="w-full bg-neutral-50 py-10  max-sm:px-10 max-xl:px-20 items-center gap-2 flex flex-col">
   <div class="w-2/3 max-xl:w-full flex flex-col justify-center">
     <div class="w-full text-2xl">Banner</div>
-    <div class="w-full text-lg text-neutral-400">Ajuste de Banner</div>
+    <div class="w-full text-lg text-neutral-500">Ajuste de Banner</div>
   </div>
   <div class="max-xl:w-full w-2/3  flex justify-center flex-col h-full gap-4 items-center">
 
     <div class="w-full flex justify-end">
       <label class="form-control max-xl:w-full w-1/2 flex gap-1 flex-col items-start">
         <div class="label p-0">
-          <span class="label-text text-neutral-600">Título</span>
+          <span class="label-text text-neutral-900 font-medium">Título</span>
           <span class="text-red-400">*</span>
 
         </div>
-        <input [(ngModel)]="title" (input)="countTitle()" formControlName="title" type="text" placeholder="Informe o título do banner" class="input bg-white input-md input-bordered w-full" />
+        <input [(ngModel)]="title" (input)="countTitle()" formControlName="title" type="text" placeholder="Informe o título do banner" class="input bg-neutral-50 input-md input-bordered w-full" />
         <div class="w-full flex flex-col items-end justify-end mt-2">
           <p
             class="text-sm text-gray-600"
@@ -27,31 +27,38 @@
     <div class="w-full flex justify-end">
       <label class="form-control max-xl:w-full w-1/2 flex gap-1 flex-col items-start">
         <div class="label p-0 ">
-          <span class="label-text text-neutral-600">Subtítulo</span>
+          <span class="label-text text-neutral-900 font-medium">Subtítulo</span>
           <span class="text-red-400">*</span>
         </div>
-        <input formControlName="subtitle" type="text" placeholder="Informe um subtítulo" class="input input-md bg-white input-bordered w-full" />
+        <input [(ngModel)]="subtitle" (input)="countSubitle()" formControlName="subtitle" type="text" placeholder="Informe um subtítulo" class="input input-md bg-neutral-50 input-bordered w-full" />
+        <div class="w-full flex flex-col items-end justify-end mt-2">
+          <p
+            class="text-sm text-gray-600"
+            [ngClass]="{'text-red-500': countSubitle() > subtitlelimiteCaracteres}">
+            {{ countSubitle() }}/{{ subtitlelimiteCaracteres }}
+          </p>
+        </div>
       </label>
     </div>
 
     <div class="w-full flex justify-end">
       <label class="form-control max-xl:w-full w-1/2 flex gap-1 flex-col items-start">
         <div class="label p-0 ">
-          <span class="label-text text-neutral-600">URL de redirecionamento</span>
+          <span class="label-text text-neutral-900 font-medium">URL de redirecionamento</span>
 
         </div>
-        <input formControlName="url" type="text" placeholder="Informe um URL de redirecionamento" class="input input-md bg-white input-bordered w-full" />
+        <input formControlName="url" type="text" placeholder="Informe um URL de redirecionamento" class="input input-md bg-neutral-50 input-bordered w-full" />
       </label>
     </div>
 
     <div class="w-full flex justify-end">
       <label class="form-control max-xl:w-full w-1/2 flex flex-col gap-1 items-start">
         <div class="label p-0">
-          <span class="label-text text-neutral-600">Foto</span>
+          <span class="label-text text-neutral-900 font-medium">Foto</span>
           <span class="text-red-400">*</span>
         </div>
         <div class="w-full flex justify-end">
-          <input (change)="onFileChange($event)" type="file" class="file-input text-neutral-600 file-input-ghost bg-white file-input-bordered file-input-md w-full border-neutral-300 border-[calc(1px)]" />
+          <input (change)="onFileChange($event)" type="file" class="file-input text-neutral-600 file-input-ghost bg-neutral-50 file-input-bordered file-input-md w-full border-neutral-300 border-[calc(1px)]" />
 
         </div>
         <div class="w-full flex justify-between">
@@ -60,7 +67,7 @@
         </div>
 
         <div class="w-full flex gap-4 flex-col mt-4 ">
-          <span class="text-sm">Foto atual</span>
+          <span class="text-sm text-neutral-900 font-medium">Foto atual</span>
           <img src="{{bannerImage}}" alt="Banner" class=" border-[calc(1px)] p-5 w-full h-[calc(20rem)] object-contain" />
         </div>
 
@@ -68,11 +75,11 @@
     </div>
 
     <div class="w-full flex justify-end">
-      <div class="w-1/2 max-xl:w-full max-md:flex-col-reverse flex gap-4 justify-end">
-        <button class="w-1/3 max-xl:w-full text-neutral-600 hover:text-neutral-400 btn btn-md bg-neutral-100">
+      <div class="w-1/2 max-md:w-full max-xl:w-1/2 max-md:flex-col-reverse flex gap-4 justify-end">
+        <button class="w-1/3 max-md:w-full max-xl:w-1/3 btn-ghost text-neutral-600 border-[.5px] border-neutral-200 btn btn-md ">
           Cancelar
         </button>
-        <button (click)="submit()" class="w-1/3 max-xl:w-full btn btn-md bg-neutral-900 text-white">
+        <button (click)="submit()" class="w-1/3 max-md:w-full max-xl:w-1/3 btn btn-md bg-neutral-900 text-white">
           Salvar
           <span *ngIf="loading" class="loading loading-spinner loading-xs"></span>
         </button>

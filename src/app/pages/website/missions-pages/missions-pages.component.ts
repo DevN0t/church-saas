@@ -1,42 +1,59 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {HeaderComponent} from '../../../components/website/header/header.component';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {CarouselComponent} from '../../../components/website/carousel/carousel.component';
+import {NgForOf, NgStyle} from '@angular/common';
 import {MissionsType} from '../../../types/missions.type';
 import {WorshipType} from '../../../types/worship.type';
-import {EventsType} from '../../../types/events.type';
-import {NgForOf, NgIf, NgStyle} from '@angular/common';
 import {PastorType} from '../../../types/pastor.type';
-import {BranchType} from '../../../types/branch.type';
+import {EventsType} from '../../../types/events.type';
 import {BranchService} from '../../../services/branch.service';
-import {BannerType} from '../../../types/banner.type';
 import {BannerService} from '../../../services/banner.service';
-import {LayoutType} from '../../../types/layout.type';
 import {LayoutService} from '../../../services/layout.service';
-import {CarouselComponent} from '../../../components/website/carousel/carousel.component';
+import {LayoutType} from '../../../types/layout.type';
+import {BannerType} from '../../../types/banner.type';
 import AOS from 'aos';
-import {RouterOutlet} from '@angular/router';
-
 
 @Component({
-  selector: 'app-main-page',
+  selector: 'app-missions-pages',
   imports: [
-    HeaderComponent,
-    RouterOutlet,
+    NgForOf,
+    NgStyle
   ],
-  templateUrl: './main-page.component.html',
-  styleUrl: './main-page.component.css',
-  standalone: true
+  templateUrl: './missions-pages.component.html',
+  standalone: true,
+  styleUrl: './missions-pages.component.css'
 })
-export class MainPageComponent implements AfterViewInit, OnInit{
+export class MissionsPagesComponent implements AfterViewInit, OnInit {
 
-  missions: MissionsType = {
-    id:1,
+  missions: MissionsType[] = [
+    {
+    id: 1,
     title: 'Ministérios',
     description: 'Aqui você encontra todas as informações sobre os ministérios da Pibaf',
     image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
-  };
+    },
+    {
+      id: 1,
+      title: 'Ministérios',
+      description: 'Aqui você encontra todas as informações sobre os ministérios da Pibaf',
+      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
+    },
+    {
+      id: 1,
+      title: 'Ministérios',
+      description: 'Aqui você encontra todas as informações sobre os ministérios da Pibaf',
+      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
+    },
+    {
+      id: 1,
+      title: 'Ministérios',
+      description: 'Aqui você encontra todas as informações sobre os ministérios da Pibaf',
+      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
+    },
+
+  ];
 
   worship: WorshipType = {
-    id:1,
+    id: 1,
     title: 'Cultos',
     description: 'Aqui você encontra todas as informações sobre os cultos da Pibaf',
     image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a1ef8c50af8ccb8c0_image-lr-2.jpg'
@@ -44,42 +61,42 @@ export class MainPageComponent implements AfterViewInit, OnInit{
 
   pastors: PastorType[] = [
     {
-     id: 1,
-     name: 'Pastor 1',
+      id: 1,
+      name: 'Pastor 1',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
-      image:     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8FUq-nmpkWojW1bjk8F5uF55ys93JEIOdTg&s',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8FUq-nmpkWojW1bjk8F5uF55ys93JEIOdTg&s',
     },
     {
       id: 2,
       name: 'Pastor 2',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
       image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
-    },{
+    }, {
       id: 3,
       name: 'Pastor 3',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
       image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
-    },{
+    }, {
       id: 4,
       name: 'Pastor 4',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
       image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
-    },{
+    }, {
       id: 5,
       name: 'Pastor 5',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
       image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
-    },{
+    }, {
       id: 6,
       name: 'Pastor 6',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
       image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
-    },{
+    }, {
       id: 7,
       name: 'Pastor 7',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
       image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
-    },{
+    }, {
       id: 8,
       name: 'Pastor 8',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
@@ -130,7 +147,8 @@ export class MainPageComponent implements AfterViewInit, OnInit{
     private bannerService: BannerService,
     private layoutService: LayoutService) {
   }
-  currentURL='';
+
+  currentURL = '';
   branch = {
     id: 0,
     logo: '',
@@ -155,7 +173,8 @@ export class MainPageComponent implements AfterViewInit, OnInit{
     title: '',
     url: ''
   }
-  getBranch(){
+
+  getBranch() {
     this.currentURL = window.location.origin
     console.log(this.currentURL)
 
@@ -172,7 +191,7 @@ export class MainPageComponent implements AfterViewInit, OnInit{
     );
   }
 
-  getLayout(){
+  getLayout() {
     this.layoutService.getLayoutPublic().subscribe(
       layouts => {
         this.layout.bannerFontColor = layouts.bannerFontColor;
@@ -185,7 +204,7 @@ export class MainPageComponent implements AfterViewInit, OnInit{
     );
   }
 
-  getBanner(){
+  getBanner() {
     this.bannerService.getBannerPublic().subscribe(
       banner => {
         this.banner = banner;

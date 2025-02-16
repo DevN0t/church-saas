@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {NgxSonnerToaster} from 'ngx-sonner';
+import AOS from 'aos';
+
 
 @Component({
   selector: 'app-root',
@@ -9,6 +11,14 @@ import {NgxSonnerToaster} from 'ngx-sonner';
   styleUrl: './app.component.css',
   standalone: true,
 })
-export class AppComponent {
-  title = 'pibaf';
+export class AppComponent implements OnInit, AfterViewInit {
+
+  ngOnInit(): void {
+    AOS.init();
+    window.addEventListener('load', AOS.refresh);
+  }
+
+  ngAfterViewInit(): void {
+    AOS.refresh();
+  }
 }

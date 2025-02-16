@@ -1,0 +1,101 @@
+<div class="flex flex-col min-h-screen px-10 w-full" [ngStyle]="{'background-color': layout.bgColor}">
+
+  <div
+    data-aos="fade-up"
+    class="w-full h-[70vh] bg-cover bg-center rounded-2xl mt-20"
+    [ngStyle]="{'background-image': 'url(' + banner.image.toString() + ')'}">
+
+    <div  class="w-full h-full bg-black bg-opacity-70 gap-4 flex flex-col rounded-2xl justify-center px-56 max-xl:px-10">
+      <h1 data-aos="fade-down" data-aos-delay="600" class="w-1/2 max-md:text-4xl max-sm:text-3xl max-sm:w-full text-5xl font-medium" [ngStyle]="{'color': layout.bannerFontColor}">
+        {{banner.title}}
+      </h1>
+      <div class="opacity-60 w-1/2 max-sm:w-full max-md:text-xl max-sm:text-lg font-light text-2xl">
+        <h1 [ngStyle]="{'color': layout.bannerFontColor}" data-aos="fade-down" data-aos-delay="900" >
+          {{banner.subtitle}}
+        </h1>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="w-full flex flex-col gap-3 items-center mt-5 h-[20vh] max-md:px-0 justify-center">
+    <div class="flex justify-end">
+      <h3 data-aos="fade-right" data-aos-delay="100" class="text-lg font-light" [ngStyle]="{'color': layout.fontColor}">
+        Quem somos?
+      </h3>
+    </div>
+    <div class="flex justify-end">
+      <h1 data-aos="fade-right" data-aos-delay="200" class="text-5xl font-medium " [ngStyle]="{'color': layout.fontColor}">
+        Bem vindo a {{branch.name}}
+      </h1>
+    </div>
+
+  </div>
+
+  <div class="w-full px-56 max-xl:px-0">
+    <hr class="w-full opacity-20" [ngStyle]="{'border-color': layout.fontColor}">
+  </div>
+
+  <div data-aos="fade-right" class="w-full py-10 max-xl:px-0 px-56 max-xl:gap-5 gap-20 mt-10 flex max-xl:flex-col justify-center">
+    <div class="w-full flex justify-center ">
+      <img class="w-full rounded-xl" src="{{missions.image}}">
+    </div>
+    <div class="flex gap-5 justify-center flex-col w-full">
+      <a class="font-light" [ngStyle]="{'color': layout.fontHighlightColor}"> Veja os ministérios</a>
+      <div class="flex flex-col gap-5 " [ngStyle]="{'color': layout.fontColor}">
+        <h1 class="text-5xl font-medium">{{missions.title}}</h1>
+        <h3 class="text-lg">{{missions.description}}</h3>
+        <a class="w-fit cursor-pointer text-lg"><button class="w-full btn text-lg  bg-neutral-800 font-normal text-white" >Saiba mais</button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div data-aos="fade-left" class="w-full py-10 max-xl:px-0 px-56 mt-10 max-xl:gap-5 gap-20 flex max-xl:flex-col flex-row-reverse justify-center">
+    <div class="w-full flex justify-center ">
+      <img class="w-full rounded-xl " src="{{worship.image}}">
+    </div>
+    <div class="flex gap-5 justify-center flex-col w-full">
+      <a class="font-medium " [ngStyle]="{'color': layout.fontHighlightColor}"> Veja os dias e horários</a>
+      <div class="flex flex-col gap-5 ">
+        <h1 class="text-5xl font-medium" [ngStyle]="{'color': layout.fontColor}">{{worship.title}}</h1>
+        <h3 class="text-lg font-light" [ngStyle]="{'color': layout.fontColor}">{{worship.description}}</h3>
+        <a class="w-fit cursor-pointer text-lg"><button class="w-full btn text-lg  bg-neutral-800 font-normal text-white" >Saiba mais</button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <app-carousel data-aos="fade-up" data-aos-easing="ease-out" title="Pastores" subtitle="Conheça nossos pastores" [fontColor]="layout.fontColor" [images]="pastors"></app-carousel>
+
+
+
+  <div class="w-full py-20 px-56 mt-40 gap-5 flex flex-col max-xl:px-0">
+    <div class="w-full flex flex-col gap-2 text-[{{layout.fontColor}}]">
+      <h1 class="text-lg font-light">O que nós fazemos?</h1>
+      <h1 class="text-5xl font-medium">Eventos da igreja</h1>
+    </div>
+    <div class="border-[calc(.1px)] gap-5 max-xl:flex-col flex p-5 mt-10 rounded-lg shadow-md" *ngFor="let event of events">
+      <div class="min-w-fit h-full">
+        <!-- Imagem quadrada com bordas arredondadas -->
+        <img class="w-56 h-56 max-xl:w-full object-cover object-center rounded-lg"  src="{{event.image}}" alt="Evento">
+      </div>
+
+      <div class="w-full gap-5 max-sm:p-0 p-10 flex flex-col">
+        <div class="flex items-end gap-5 max-xl:flex-col max-xl:items-start " [ngStyle]="{'color': layout.fontColor}">
+          <div class="w-fit h-full text-4xl font-medium">
+            <h1>{{event.title}}</h1>
+          </div>
+          <div class="flex items-end w-fit h-full font-light" [ngStyle]="{'color': layout.fontColor}">
+            <h2>{{event.date}}</h2>
+          </div>
+        </div>
+
+        <div class="font-normal" [ngStyle]="{'color': layout.fontColor}">
+          <h3>{{truncateContent(event.content!)}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

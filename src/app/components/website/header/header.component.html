@@ -1,14 +1,21 @@
-<div class="flex justify-between px-10 h-20 items-center w-full bg-white bg-opacity-90 backdrop-blur-md fixed top-0 left-0 z-10">
+<div  class="flex justify-between  px-10 h-20 items-center w-full backdrop-blur-md fixed top-0 left-0 z-30" [ngStyle]="{'background-color': headerBgColor}">
   <div class="">
-    <img class="w-12" src="{{logo}}" alt="Logo">
+    <img class="w-8" src="{{logo}}" alt="Logo">
   </div>
   <div class="flex justify-center">
-    <ul class="flex gap-5 justify-center items-center">
-      <li class="hover:cursor-pointer border-b-2 border-transparent hover:border-black">Home</li>
-      <li class="hover:cursor-pointer border-b-2 border-transparent hover:border-black">Sobre</li>
-      <li class="hover:cursor-pointer border-b-2 border-transparent hover:border-black">Eventos</li>
-      <li class="hover:cursor-pointer border-b-2 border-transparent hover:border-black">Noticias</li>
-      <li class="hover:cursor-pointer border-b-2 border-transparent hover:border-black">Cultos</li>
+    <ul>
+      <li (click)="navigateTo('/')" class="inline-block mx-2">
+        <a class="">Home</a>
+      </li>
+      <li (click)="navigateTo('missions')" class="inline-block mx-2">
+        <a class="">About</a>
+      </li>
+      <li class="inline-block mx-2">
+        <a  class="">Services</a>
+      </li>
+      <li class="inline-block mx-2">
+        <a class="">Contact</a>
+      </li>
     </ul>
   </div>
 </div>
