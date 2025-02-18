@@ -27,7 +27,7 @@ export class LoginService {
       tap((response: LoginResponseType) => {
         if (response.token) {
           localStorage.setItem('authToken', response.token);
-          this.router.navigate(['/dashboard/']);
+          this.router.navigate(['/painel/']);
         }
       })
     );

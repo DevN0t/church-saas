@@ -22,15 +22,15 @@ export class MissionService {
   }
 
   getMissionList() {
-    return this.httpClient.get<MissionsType[]>(this.apiUrl + '/missions/', {
+    return this.httpClient.get<MissionsType[]>(this.apiUrl + '/missionServices/', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('authToken')}`
       }
     });
   }
 
-  updateMission(layout: MissionsType) {
-    return this.httpClient.put<MissionsType>(this.apiUrl + '/mission/', layout, {
+  updateMission(mission: MissionsType) {
+    return this.httpClient.put<MissionsType>(this.apiUrl + '/mission/', mission, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('authToken')}`
       }
@@ -40,5 +40,37 @@ export class MissionService {
   getMissionPublic() {
     const alias = localStorage.getItem('alias')
     return this.httpClient.get<MissionsType>(this.apiUrl + '/public/mission/?alias=' + alias);
+  }
+
+  createNewMissionService(mission: MissionsType) {
+    return this.httpClient.post<MissionsType>(this.apiUrl + '/missionService/', mission, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('authToken')}`
+      }
+    });
+  }
+
+  getMissionById(id: string) {
+    return this.httpClient.get<MissionsType>(this.apiUrl + '/missionService/?id=' + id, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('authToken')}`
+      }
+    });
+  }
+
+  updateMissionService(id: string, mission: MissionsType) {
+    return this.httpClient.put<MissionsType>(this.apiUrl + '/missionService/?id=' + id, mission, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('authToken')}`
+      }
+    });
+  }
+
+  deleteMissionService(id: string) {
+    return this.httpClient.delete<MessageType>(this.apiUrl + '/missionService/?id=' + id, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('authToken')}`
+      }
+    });
   }
 }

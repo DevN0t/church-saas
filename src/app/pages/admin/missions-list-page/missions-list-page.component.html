@@ -1,35 +1,66 @@
-<div class="flex flex-col items-center justify-center p-4">
-  <div class="w-full max-w-5xl border rounded-xl h-full items-center shadow-lg  p-6">
+<div class="flex flex-col gap-3 items-center mt-16 justify-center p-4 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+  <div class="w-full max-w-5xl flex flex-col justify-center">
+    <div class="w-full text-2xl">Ministérios</div>
+    <div class="w-full text-lg text-neutral-500">Listagem de ministérios</div>
+  </div>
+  <div class="w-full max-w-5xl flex justify-end">
+    <button class="btn btn-sm bg-blue-900 flex justify-center items-center text-white font-medium px-6 rounded-lg text-sm" (click)="navigateTo('/painel/ministerio/criar')">Novo</button>
+  </div>
+  <div class="w-full max-w-5xl border rounded-xl h-full items-center p-6 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
     <!-- Cabeçalho -->
-    <div class="flex justify-between items-center bg-gray-100 p-4 rounded-t-lg">
-      <span class="font-semibold text-gray-700 w-1/3">Título</span>
-      <span class="font-semibold text-gray-700 w-1/3">Descrição</span>
-      <span class="font-semibold text-gray-700 w-1/3 text-center">Ações</span>
+    <div class="flex justify-between items-center p-4 rounded-t-lg min-w-[600px]">
+      <span class="font-semibold text-gray-700 w-1/4">Imagem</span>
+      <span class="font-semibold text-gray-700 w-1/4">Título</span>
+      <span class="font-semibold text-gray-700 w-1/4">Descrição</span>
+      <span class="font-semibold text-gray-700 w-1/4 text-center">Ações</span>
     </div>
 
-    <!-- Conteúdo gerado dinamicamente com *ngFor -->
-    <div *ngFor="let person of people" class="flex items-center border-t p-4 hover:bg-gray-50">
+    <!-- Conteúdo gerado dinamicamente com *ngFor e paginação -->
+    <div *ngFor="let mission of paginatedMissions" class="flex items-center border-t p-4 hover:bg-gray-50 min-w-[600px]">
       <!-- Avatar -->
-      <div class="flex items-center gap-3 w-1/3">
+      <div class="flex items-center gap-3 w-1/4">
         <div class="avatar">
-          <div class="mask mask-squircle h-12 w-12">
-            <img [src]="person.avatar" [alt]="'Avatar de ' + person.name" />
+          <div class="flex justify-center h-12 w-12">
+            <img [src]="mission.image" alt="imagem" />
           </div>
         </div>
       </div>
-
+      <div class="w-1/4">
+        <span class="text-gray-800 font-medium" title="{{mission.title}}">{{ truncateContent(mission.title, 15) }}</span>
+      </div>
       <!-- Descrição -->
-      <div class="w-1/3">
-        <span class="text-gray-800 font-medium">{{ person.company }}</span>
-        <br />
-        <span class="badge badge-primary badge-sm">{{ person.jobTitle }}</span>
+      <div class="w-1/4">
+        <span class="text-gray-800 font-medium" title="{{mission.description}}">{{ truncateContent(mission.description) }}</span>
       </div>
 
       <!-- Ações -->
-      <div class="w-1/3 flex justify-center gap-3">
-        <button class="btn btn-primary btn-sm">Editar</button>
-        <button class="btn btn-error btn-sm">Excluir</button>
+      <div class="w-1/4 flex justify-center gap-3">
+        <button class="btn btn-ghost btn-sm" (click)="navigateTo('/painel/ministerio/editar/'+ mission.id)">Editar</button>
+        <button class="btn btn-error text-white btn-sm" (click)="openDeleteModal(mission.id?.toString())">Excluir</button>
       </div>
     </div>
   </div>
+
+  <!-- Controles de Paginação -->
+  <div class="join max-w-5xl w-full justify-end">
+    <button (click)="previousPage()" [disabled]="currentPage === 1" class="join-item bg-neutral-100 text-neutral-500 hover:bg-neutral-100 border-[.5px] hover:border-neutral-300 border-neutral-300 btn">«</button>
+    <button class="join-item hover:bg-neutral-100 hover:border-neutral-300 bg-neutral-100 text-neutral-500 border-[.5px] border-neutral-300 btn">Página {{ currentPage }}</button>
+    <button (click)="nextPage()" [disabled]="currentPage >= totalPages" class="join-item bg-neutral-100 text-neutral-500 hover:bg-neutral-100 border-[.5px] hover:border-neutral-300 border-neutral-300 btn">»</button>
+  </div>
+
+  <!-- Modal de Confirmação -->
+  <div *ngIf="showDeleteModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+      <h2 class="text-lg font-semibold">Confirmar Exclusão</h2>
+      <p class="text-gray-600 mt-2">Tem certeza que deseja excluir este ministério?</p>
+      <div class="flex justify-end gap-3 mt-4">
+        <button (click)="cancelDelete()" class="btn btn-ghost btn-sm">Cancelar</button>
+        <button (click)="confirmDelete()" class="btn btn-error text-white btn-sm">Excluir</button>
+      </div>
+    </div>
+  </div>
+
+
+  <ngx-sonner-toaster richColors position="top-right" />
+
 </div>

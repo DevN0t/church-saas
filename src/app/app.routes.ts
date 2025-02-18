@@ -12,6 +12,7 @@ import {LayoutPageComponent} from './pages/admin/layout-page/layout-page.compone
 import {MainPageLayoutComponent} from './pages/website/main-page-layout/main-page-layout.component';
 import {MissionsPagesComponent} from './pages/website/missions-pages/missions-pages.component';
 import {MissionsListPageComponent} from './pages/admin/missions-list-page/missions-list-page.component';
+import {MissionCreatePageComponent} from './pages/admin/mission-create-page/mission-create-page.component';
 
 export const routes: Routes = [
   {
@@ -21,7 +22,7 @@ export const routes: Routes = [
       },
 
       {
-        path: 'missions', component: MissionsPagesComponent
+        path: 'ministerios', component: MissionsPagesComponent
       },
     ]
   },
@@ -30,27 +31,33 @@ export const routes: Routes = [
   },
 
   {
-    path: 'dashboard', component: HomePageComponent, canActivate: [AuthGuard], children: [
+    path: 'painel', component: HomePageComponent, canActivate: [AuthGuard], children: [
       {
         path: 'banner', component: BannerPageComponent
       },
       {
-        path: 'missions', component: MissionsPageComponent
+        path: 'ministerio/pagina', component: MissionsPageComponent
       },
       {
         path: '', component: MainDashboardPageComponent
       },
       {
-        path: 'config', component: ConfigPageComponent
+        path: 'configuracoes', component: ConfigPageComponent
       },
       {
-        path: 'profile', component: ProfilePageComponent
+        path: 'perfil', component: ProfilePageComponent
       },
       {
         path: 'layout', component: LayoutPageComponent
       },
       {
-        path: 'services', component: MissionsListPageComponent
+        path: 'ministerio', component: MissionsListPageComponent
+      },
+      {
+        path: 'ministerio/criar', component: MissionCreatePageComponent
+      },
+      {
+        path: 'ministerio/editar/:id', component: MissionCreatePageComponent
       }
     ]
   }
