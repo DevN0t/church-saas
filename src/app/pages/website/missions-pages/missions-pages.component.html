@@ -8,11 +8,11 @@
       <hr class="w-10 border-[1px]">
     </div>
   </div>
-  <div class="w-full flex justify-center" *ngFor="let mission of missions">
+  <div class="w-full h-full items-center flex px-56 max-lg:px-0" *ngFor="let mission of missions">
 
-    <div data-aos="fade-right" class="w-2/3 py-10 border-[1px] rounded-2xl px-10 max-xl:px-0 max-xl:gap-5 gap-20 mt-10 flex max-xl:flex-col justify-center">
-      <div class="w-1/2 flex justify-center ">
-        <img class="w-full rounded-xl" src="{{mission.image}}">
+    <div data-aos="fade-right" class="w-full py-10 border-[1px] h-full items-center rounded-2xl max-xl:gap-5 mt-10  flex justify-center">
+      <div class="w-1/3 max-lg:w-full flex justify-center ">
+        <img class=" h-40 rounded-xl object-contain" src="{{mission.image}}">
       </div>
       <div class="flex gap-5 justify-center flex-col w-full">
         <a class="font-light" [ngStyle]="{'color': layout.fontHighlightColor}"> Veja os ministérios</a>

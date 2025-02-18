@@ -13,6 +13,7 @@ import AOS from 'aos';
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
+
   ngOnInit(): void {
     AOS.init();
     window.addEventListener('load', AOS.refresh);

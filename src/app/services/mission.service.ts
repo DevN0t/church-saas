@@ -29,11 +29,18 @@ export class MissionService {
     });
   }
 
+
   updateMission(mission: MissionsType) {
     return this.httpClient.put<MissionsType>(this.apiUrl + '/mission/', mission, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('authToken')}`
       }
+    });
+  }
+
+  getMissionListPublic() {
+    const alias = localStorage.getItem('alias')
+    return this.httpClient.get<MissionsType[]>(this.apiUrl + '/public/missionServices/?alias=' + alias, {
     });
   }
 

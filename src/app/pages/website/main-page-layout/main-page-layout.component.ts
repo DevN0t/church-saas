@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {HeaderComponent} from '../../../components/website/header/header.component';
-import {RouterOutlet} from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
 import {BranchService} from '../../../services/branch.service';
 import {BannerService} from '../../../services/banner.service';
 import {LayoutService} from '../../../services/layout.service';
@@ -127,7 +127,8 @@ export class MainPageLayoutComponent implements AfterViewInit, OnInit{
   constructor(
     private branchService: BranchService,
     private bannerService: BannerService,
-    private layoutService: LayoutService) {
+    private layoutService: LayoutService,
+    private router: Router) {
   }
   currentURL='';
   branch = {
@@ -202,4 +203,7 @@ export class MainPageLayoutComponent implements AfterViewInit, OnInit{
     AOS.refresh();
   }
 
+  navigateTo(route: string) {
+    this.router.navigate([route]);
+  }
 }

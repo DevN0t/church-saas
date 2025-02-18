@@ -11,6 +11,7 @@ import {LayoutService} from '../../../services/layout.service';
 import {LayoutType} from '../../../types/layout.type';
 import {BannerType} from '../../../types/banner.type';
 import AOS from 'aos';
+import {MissionService} from '../../../services/mission.service';
 
 @Component({
   selector: 'app-missions-pages',
@@ -25,118 +26,9 @@ import AOS from 'aos';
 export class MissionsPagesComponent implements AfterViewInit, OnInit {
 
   missions: MissionsType[] = [
-    {
-    id: 1,
-    title: 'Ministérios',
-    description: 'Aqui você encontra todas as informações sobre os ministérios da Pibaf',
-    image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
-    },
-    {
-      id: 1,
-      title: 'Ministérios',
-      description: 'Aqui você encontra todas as informações sobre os ministérios da Pibaf',
-      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
-    },
-    {
-      id: 1,
-      title: 'Ministérios',
-      description: 'Aqui você encontra todas as informações sobre os ministérios da Pibaf',
-      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
-    },
-    {
-      id: 1,
-      title: 'Ministérios',
-      description: 'Aqui você encontra todas as informações sobre os ministérios da Pibaf',
-      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
-    },
 
   ];
 
-  worship: WorshipType = {
-    id: 1,
-    title: 'Cultos',
-    description: 'Aqui você encontra todas as informações sobre os cultos da Pibaf',
-    image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a1ef8c50af8ccb8c0_image-lr-2.jpg'
-  }
-
-  pastors: PastorType[] = [
-    {
-      id: 1,
-      name: 'Pastor 1',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8FUq-nmpkWojW1bjk8F5uF55ys93JEIOdTg&s',
-    },
-    {
-      id: 2,
-      name: 'Pastor 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
-      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
-    }, {
-      id: 3,
-      name: 'Pastor 3',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
-      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
-    }, {
-      id: 4,
-      name: 'Pastor 4',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
-      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
-    }, {
-      id: 5,
-      name: 'Pastor 5',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
-      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
-    }, {
-      id: 6,
-      name: 'Pastor 6',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
-      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
-    }, {
-      id: 7,
-      name: 'Pastor 7',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
-      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
-    }, {
-      id: 8,
-      name: 'Pastor 8',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
-      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
-    }]
-
-  events: EventsType[] = [
-    {
-      id: 1,
-      title: 'Evento 1Evento 1Evento 1Evento 1',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
-      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg',
-      date: '2021-09-01'
-
-    },
-    {
-      id: 1,
-      title: 'Evento 1Evento 1Evento 1Evento 1',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
-      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg',
-      date: '2021-09-01'
-
-    },
-    {
-      id: 1,
-      title: 'Evento 1Evento 1Evento 1Evento 1',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
-      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg',
-      date: '2021-09-01'
-
-    },
-    {
-      id: 1,
-      title: 'Evento 1Evento 1Evento 1Evento 1',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
-      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg',
-      date: '2021-09-01'
-
-    }
-  ]
 
   truncateContent(content: string, limit: number = 150): string {
     return content.length > limit ? content.substring(0, limit) + '...' : content;
@@ -145,7 +37,8 @@ export class MissionsPagesComponent implements AfterViewInit, OnInit {
   constructor(
     private branchService: BranchService,
     private bannerService: BannerService,
-    private layoutService: LayoutService) {
+    private layoutService: LayoutService,
+    private missionService: MissionService) {
   }
 
   currentURL = '';
@@ -172,6 +65,14 @@ export class MissionsPagesComponent implements AfterViewInit, OnInit {
     id: 1,
     title: '',
     url: ''
+  }
+
+  getMission(){
+    this.missionService.getMissionListPublic().subscribe(
+      missionService => {
+        this.missions = missionService;
+      }
+    );
   }
 
   getBranch() {
@@ -216,6 +117,7 @@ export class MissionsPagesComponent implements AfterViewInit, OnInit {
     this.getBranch();
     this.getBanner();
     this.getLayout();
+    this.getMission();
   }
 
   ngAfterViewInit(): void {
