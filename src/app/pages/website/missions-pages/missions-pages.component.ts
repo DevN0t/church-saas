@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {CarouselComponent} from '../../../components/website/carousel/carousel.component';
-import {NgForOf, NgStyle} from '@angular/common';
+import {NgClass, NgForOf, NgStyle} from '@angular/common';
 import {MissionsType} from '../../../types/missions.type';
 import {WorshipType} from '../../../types/worship.type';
 import {PastorType} from '../../../types/pastor.type';
@@ -12,12 +12,14 @@ import {LayoutType} from '../../../types/layout.type';
 import {BannerType} from '../../../types/banner.type';
 import AOS from 'aos';
 import {MissionService} from '../../../services/mission.service';
+import {MissionsServiceType} from '../../../types/missions-service.type';
 
 @Component({
   selector: 'app-missions-pages',
   imports: [
+    NgStyle,
     NgForOf,
-    NgStyle
+    NgClass
   ],
   templateUrl: './missions-pages.component.html',
   standalone: true,
@@ -25,7 +27,7 @@ import {MissionService} from '../../../services/mission.service';
 })
 export class MissionsPagesComponent implements AfterViewInit, OnInit {
 
-  missions: MissionsType[] = [
+  missions: MissionsServiceType[] = [
 
   ];
 
@@ -57,7 +59,6 @@ export class MissionsPagesComponent implements AfterViewInit, OnInit {
     fontColor: '#000000',
     headerBgColor: '#ffffff'
   }
-
 
   banner: BannerType = {
     subtitle: '',
@@ -100,7 +101,6 @@ export class MissionsPagesComponent implements AfterViewInit, OnInit {
         this.layout.fontColor = layouts.fontColor;
         this.layout.fontHighlightColor = layouts.fontHighlightColor;
         this.layout.headerBgColor = layouts.headerBgColor;
-
       }
     );
   }

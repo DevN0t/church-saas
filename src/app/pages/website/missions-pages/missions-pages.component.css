@@ -1,0 +1,11 @@
+/* Garante que as palavras longas quebrem corretamente */
+.text-wrap {
+  word-wrap: break-word; /* Quebra a palavra longa */
+  overflow-wrap: break-word; /* Mais garantia de quebra de palavra */
+  white-space: normal; /* Permite quebras de linha dentro do texto */
+  max-width: 100%; /* Garante que o texto se limite à largura do contêiner */
+}
+
+.break-words {
+  word-break: break-word; /* Força a quebra de palavras muito longas */
+}

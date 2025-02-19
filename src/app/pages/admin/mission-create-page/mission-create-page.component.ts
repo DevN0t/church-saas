@@ -25,7 +25,7 @@ export class MissionCreatePageComponent implements OnInit {
   image: string = '';
   loading: boolean = false;
   isEditMode: boolean = false;
-  missionId: string | null = null; // ID da missão (se for edição)
+  missionId: string | null = null;
 
   constructor(
     private uploadService: UploadService,
@@ -36,7 +36,9 @@ export class MissionCreatePageComponent implements OnInit {
     this.missionForm = new FormGroup({
       title: new FormControl('', [Validators.required]),
       description: new FormControl(''),
-      image: new FormControl('')
+      image: new FormControl(''),
+      day: new FormControl(''),
+      time: new FormControl('')
     });
   }
 
@@ -56,7 +58,9 @@ export class MissionCreatePageComponent implements OnInit {
       this.missionForm.patchValue({
         title: mission.title,
         description: mission.description,
-        image: mission.image
+        image: mission.image,
+        day: mission.day,
+        time: mission.time
       });
       this.image = mission.image;
     });

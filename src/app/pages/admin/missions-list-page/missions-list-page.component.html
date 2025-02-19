@@ -1,12 +1,12 @@
 <div class="flex flex-col gap-3 items-center mt-16 justify-center p-4 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
-  <div class="w-full max-w-5xl flex flex-col justify-center">
+  <div class="w-full max-w-6xl flex flex-col justify-center">
     <div class="w-full text-2xl">Ministérios</div>
     <div class="w-full text-lg text-neutral-500">Listagem de ministérios</div>
   </div>
-  <div class="w-full max-w-5xl flex justify-end">
+  <div class="w-full max-w-6xl flex justify-end">
     <button class="btn btn-sm bg-blue-900 flex justify-center items-center text-white font-medium px-6 rounded-lg text-sm" (click)="navigateTo('/painel/ministerio/criar')">Novo</button>
   </div>
-  <div class="w-full max-w-5xl border rounded-xl h-full items-center p-6 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+  <div class="w-full max-w-6xl border rounded-xl h-full items-center p-6 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
     <!-- Cabeçalho -->
     <div class="flex justify-between items-center p-4 rounded-t-lg min-w-[600px]">
       <span class="font-semibold text-gray-700 w-1/4">Imagem</span>
@@ -42,7 +42,7 @@
   </div>
 
   <!-- Controles de Paginação -->
-  <div class="join max-w-5xl w-full justify-end">
+  <div class="join max-w-6xl w-full justify-end">
     <button (click)="previousPage()" [disabled]="currentPage === 1" class="join-item bg-neutral-100 text-neutral-500 hover:bg-neutral-100 border-[.5px] hover:border-neutral-300 border-neutral-300 btn">«</button>
     <button class="join-item hover:bg-neutral-100 hover:border-neutral-300 bg-neutral-100 text-neutral-500 border-[.5px] border-neutral-300 btn">Página {{ currentPage }}</button>
     <button (click)="nextPage()" [disabled]="currentPage >= totalPages" class="join-item bg-neutral-100 text-neutral-500 hover:bg-neutral-100 border-[.5px] hover:border-neutral-300 border-neutral-300 btn">»</button>

@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {LayoutType} from '../types/layout.type';
 import {MessageType} from '../types/message.type';
 import {MissionsType} from '../types/missions.type';
+import {MissionsServiceType} from '../types/missions-service.type';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +41,7 @@ export class MissionService {
 
   getMissionListPublic() {
     const alias = localStorage.getItem('alias')
-    return this.httpClient.get<MissionsType[]>(this.apiUrl + '/public/missionServices/?alias=' + alias, {
+    return this.httpClient.get<MissionsServiceType[]>(this.apiUrl + '/public/missionServices/?alias=' + alias, {
     });
   }
 
@@ -49,8 +50,8 @@ export class MissionService {
     return this.httpClient.get<MissionsType>(this.apiUrl + '/public/mission/?alias=' + alias);
   }
 
-  createNewMissionService(mission: MissionsType) {
-    return this.httpClient.post<MissionsType>(this.apiUrl + '/missionService/', mission, {
+  createNewMissionService(mission: MissionsServiceType) {
+    return this.httpClient.post<MessageType>(this.apiUrl + '/missionService/', mission, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('authToken')}`
       }
@@ -58,15 +59,15 @@ export class MissionService {
   }
 
   getMissionById(id: string) {
-    return this.httpClient.get<MissionsType>(this.apiUrl + '/missionService/?id=' + id, {
+    return this.httpClient.get<MissionsServiceType>(this.apiUrl + '/missionService/?id=' + id, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('authToken')}`
       }
     });
   }
 
-  updateMissionService(id: string, mission: MissionsType) {
-    return this.httpClient.put<MissionsType>(this.apiUrl + '/missionService/?id=' + id, mission, {
+  updateMissionService(id: string, mission: MissionsServiceType) {
+    return this.httpClient.put<MessageType>(this.apiUrl + '/missionService/?id=' + id, mission, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('authToken')}`
       }
