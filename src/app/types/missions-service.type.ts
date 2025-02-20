@@ -4,5 +4,6 @@ export type MissionsServiceType = {
   description?: string,
   image: string,
   day: string,
-  time: string
+  time: string,
+  location: string
 }

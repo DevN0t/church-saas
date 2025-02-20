@@ -1,18 +1,26 @@
 import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import AOS from 'aos';
-import {NgStyle} from '@angular/common';
+import {NgIf, NgStyle} from '@angular/common';
 import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
   imports: [
-    NgStyle
+    NgStyle,
+    NgIf
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
   standalone: true
 })
 export class HeaderComponent implements OnInit, AfterViewInit{
+
+  menuOpen = false;
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
   ngOnInit(): void {
     AOS.init();
     window.addEventListener('load', AOS.refresh);

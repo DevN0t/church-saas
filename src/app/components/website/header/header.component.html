@@ -1,21 +1,55 @@
-<div  class="flex justify-between  px-10 h-20 items-center w-full backdrop-blur-md fixed top-0 left-0 z-30" [ngStyle]="{'background-color': headerBgColor}">
-  <div class="">
-    <img class="w-8" src="{{logo}}" alt="Logo">
+<div class="flex justify-between px-6 sm:px-10 h-20 items-center w-full backdrop-blur-md shadow-md fixed top-0 left-0 z-30"
+     [ngStyle]="{'background-color': headerBgColor}">
+
+  <!-- Logo -->
+  <div>
+    <img class="w-8" [src]="logo" alt="Logo">
   </div>
-  <div class="flex justify-center">
-    <ul>
-      <li (click)="navigateTo('/')" class="inline-block mx-2 hover:cursor-pointer hover:underline">
-        <a class="">Home</a>
+
+  <!-- Ícone do Menu Hamburguer (Visível em Telas Pequenas) -->
+  <div class="sm:hidden">
+    <button (click)="toggleMenu()" class="focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Menu de Navegação (Visível em Telas Grandes) -->
+  <div class="hidden sm:flex justify-center">
+    <ul class="flex space-x-4">
+      <li (click)="navigateTo('/')" class="hover:cursor-pointer hover:underline">
+        <a>Home</a>
       </li>
-      <li class="inline-block mx-2 hover:cursor-pointer hover:underline">
-        <a class="">Sobre</a>
+      <li class="hover:cursor-pointer hover:underline">
+        <a>Sobre</a>
       </li>
-      <li (click)="navigateTo('ministerios')" class="inline-block mx-2 hover:cursor-pointer hover:underline">
-        <a  class="">Ministérios</a>
+      <li (click)="navigateTo('ministerios')" class="hover:cursor-pointer hover:underline">
+        <a>Ministérios</a>
       </li>
-      <li class="inline-block mx-2 hover:cursor-pointer hover:underline">
-        <a class="">Contato</a>
+      <li class="hover:cursor-pointer hover:underline">
+        <a>Contato</a>
       </li>
     </ul>
   </div>
+
+</div>
+
+<div *ngIf="menuOpen" class="fixed top-20 left-0 w-full bg-white shadow-md sm:hidden transition-all duration-300">
+  <ul class="flex flex-col items-center py-4 space-y-4">
+    <li (click)="navigateTo('/'); toggleMenu()" class="hover:cursor-pointer hover:underline">
+      <a>Home</a>
+    </li>
+    <li (click)="toggleMenu()" class="hover:cursor-pointer hover:underline">
+      <a>Sobre</a>
+    </li>
+    <li (click)="navigateTo('ministerios'); toggleMenu()" class="hover:cursor-pointer hover:underline">
+      <a>Ministérios</a>
+    </li>
+    <li (click)="toggleMenu()" class="hover:cursor-pointer hover:underline">
+      <a>Contato</a>
+    </li>
+  </ul>
 </div>

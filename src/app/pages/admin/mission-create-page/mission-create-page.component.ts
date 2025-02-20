@@ -38,7 +38,8 @@ export class MissionCreatePageComponent implements OnInit {
       description: new FormControl(''),
       image: new FormControl(''),
       day: new FormControl(''),
-      time: new FormControl('')
+      time: new FormControl(''),
+      location: new FormControl('')
     });
   }
 
@@ -60,7 +61,8 @@ export class MissionCreatePageComponent implements OnInit {
         description: mission.description,
         image: mission.image,
         day: mission.day,
-        time: mission.time
+        time: mission.time,
+        location: mission.location
       });
       this.image = mission.image;
     });

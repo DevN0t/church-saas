@@ -13,6 +13,10 @@ import {MainPageLayoutComponent} from './pages/website/main-page-layout/main-pag
 import {MissionsPagesComponent} from './pages/website/missions-pages/missions-pages.component';
 import {MissionsListPageComponent} from './pages/admin/missions-list-page/missions-list-page.component';
 import {MissionCreatePageComponent} from './pages/admin/mission-create-page/mission-create-page.component';
+import {PastorsPageComponent} from './pages/admin/pastors-page/pastors-page.component';
+import {PastorsCreatePageComponent} from './pages/admin/pastors-create-page/pastors-create-page.component';
+import {EventsPageComponent} from './pages/admin/events-page/events-page.component';
+import {EventsCreatePageComponent} from './pages/admin/events-create-page/events-create-page.component';
 
 export const routes: Routes = [
   {
@@ -58,7 +62,25 @@ export const routes: Routes = [
       },
       {
         path: 'ministerio/editar/:id', component: MissionCreatePageComponent
-      }
+      },
+      {
+        path: 'pastores', component: PastorsPageComponent
+      },
+      {
+        path: 'pastores/criar', component: PastorsCreatePageComponent
+      },
+      {
+        path: 'pastores/editar/:id', component: PastorsCreatePageComponent
+      },
+      {
+        path: 'eventos', component: EventsPageComponent
+      },
+      {
+        path: 'eventos/criar', component: EventsCreatePageComponent
+      },
+      {
+        path: 'eventos/editar/:id', component: EventsCreatePageComponent
+      },
     ]
   }
 ];

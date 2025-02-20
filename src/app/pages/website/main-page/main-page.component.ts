@@ -87,38 +87,7 @@ export class MainPageComponent implements AfterViewInit, OnInit{
     }]
 
   events: EventsType[] = [
-    {
-      id: 1,
-      title: 'Evento 1Evento 1Evento 1Evento 1',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
-      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg',
-      date: '2021-09-01'
 
-    },
-    {
-      id: 1,
-      title: 'Evento 1Evento 1Evento 1Evento 1',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
-      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg',
-      date: '2021-09-01'
-
-    },
-    {
-      id: 1,
-      title: 'Evento 1Evento 1Evento 1Evento 1',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
-      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg',
-      date: '2021-09-01'
-
-    },
-    {
-      id: 1,
-      title: 'Evento 1Evento 1Evento 1Evento 1',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
-      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg',
-      date: '2021-09-01'
-
-    }
   ]
 
   truncateContent(content: string, limit: number = 150): string {

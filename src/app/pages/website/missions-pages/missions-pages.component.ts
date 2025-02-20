@@ -31,8 +31,15 @@ export class MissionsPagesComponent implements AfterViewInit, OnInit {
 
   ];
 
+  missionTop: MissionsType = {
 
-  truncateContent(content: string, limit: number = 150): string {
+  }
+
+
+  truncateContent(content: string | undefined, limit: number = 150): string {
+    if (!content) {
+      return '';
+    }
     return content.length > limit ? content.substring(0, limit) + '...' : content;
   }
 
@@ -68,10 +75,18 @@ export class MissionsPagesComponent implements AfterViewInit, OnInit {
     url: ''
   }
 
-  getMission(){
+  getMissionService(){
     this.missionService.getMissionListPublic().subscribe(
       missionService => {
         this.missions = missionService;
+      }
+    );
+  }
+
+  getMission(){
+    this.missionService.getMissionPublic().subscribe(
+      mission => {
+        this.missionTop = mission;
       }
     );
   }
@@ -117,6 +132,7 @@ export class MissionsPagesComponent implements AfterViewInit, OnInit {
     this.getBranch();
     this.getBanner();
     this.getLayout();
+    this.getMissionService();
     this.getMission();
   }
 

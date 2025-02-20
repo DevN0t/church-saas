@@ -1,0 +1,67 @@
+<div [formGroup]="pastorForm" class="w-[calc(100svw)] bg-neutral-50 h-full py-10 max-sm:px-10 max-xl:px-20 items-center gap-2 flex flex-col">
+  <div class="w-2/3 max-xl:w-full flex flex-col justify-center">
+    <div class="w-full text-2xl">Pastores</div>
+    <div class="w-full text-lg text-neutral-500">Ajustes de Pastores</div>
+  </div>
+  <div class="max-xl:w-full w-2/3  flex justify-center flex-col gap-4 items-center">
+
+    <div class="w-full flex justify-end">
+      <label class="form-control max-xl:w-full w-1/2 flex gap-1 flex-col items-start">
+        <div class="label p-0">
+          <span class="label-text text-neutral-900 font-medium">Nome do pastor</span>
+          <span class="text-red-400">*</span>
+        </div>
+        <input formControlName="name" type="text" placeholder="Informe o titulo do ministério" class="input bg-neutral-50 input-md input-bordered w-full" />
+      </label>
+    </div>
+
+    <div class="w-full flex justify-end">
+      <label class="form-control max-xl:w-full w-1/2 flex flex-col gap-1 items-start">
+        <div class="label p-0">
+          <span class="label-text text-neutral-900 font-medium">Foto do pastor</span>
+          <span class="text-red-400">*</span>
+        </div>
+        <div class="w-full flex justify-end">
+          <input (change)="onFileChange($event)" type="file" class="file-input text-neutral-600 file-input-ghost bg-neutral-50 file-input-bordered file-input-md w-full border-neutral-300 border-[calc(1px)]" />
+
+        </div>
+        <div class="w-full flex max-sm:flex-col max-sm:gap-5 justify-between">
+          <span class="text-neutral-600 text-sm">Tamanhos recomendados: 400x400, 500x500</span>
+          <span class="text-neutral-600 text-sm">Formatos recomendados: .jpg, .png</span>
+        </div>
+
+        <div class="w-full flex gap-4 flex-col mt-4">
+          <span class="text-sm text-neutral-900 font-medium">Foto atual</span>
+
+          <!-- Se houver imagem, exibe a imagem -->
+          <img *ngIf="image; else noImage" [src]="image" alt="Logo" class="border-[calc(1px)] p-5 w-full h-[calc(10rem)] object-contain" />
+
+          <!-- Caso não tenha imagem, exibe um texto -->
+          <ng-template #noImage>
+            <div class="border-[calc(1px)] p-5 w-full h-[calc(10rem)] flex items-center justify-center text-neutral-500 text-sm">
+              Nenhuma imagem selecionada ainda
+            </div>
+          </ng-template>
+        </div>
+
+
+      </label>
+    </div>
+
+    <div class="w-full flex justify-end">
+      <div class="w-1/2 max-md:w-full max-xl:w-1/2 max-md:flex-col-reverse flex gap-4 justify-end">
+        <button class="w-1/3 max-md:w-full max-xl:w-1/3 text-neutral-600 btn btn-md btn-ghost border-[.5px] border-neutral-200" (click)="navigateTo('/painel/pastores')">
+          Cancelar
+        </button>
+        <button (click)="submit()" class="w-1/3 max-md:w-full max-xl:w-1/3 btn btn-md bg-neutral-900 text-white">
+          Salvar
+          <span *ngIf="loading" class="loading loading-spinner loading-xs"></span>
+        </button>
+      </div>
+
+      <ngx-sonner-toaster richColors position="top-right" />
+
+    </div>
+
+  </div>
+</div>

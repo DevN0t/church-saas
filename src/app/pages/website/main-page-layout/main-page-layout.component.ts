@@ -13,6 +13,7 @@ import {WorshipType} from '../../../types/worship.type';
 import {PastorType} from '../../../types/pastor.type';
 import {EventsType} from '../../../types/events.type';
 import AOS from 'aos';
+import {MissionService} from '../../../services/mission.service';
 
 @Component({
   selector: 'app-main-page-layout',
@@ -28,10 +29,7 @@ import AOS from 'aos';
 export class MainPageLayoutComponent implements AfterViewInit, OnInit{
 
   missions: MissionsType = {
-    id:1,
-    title: 'Ministérios',
-    description: 'Aqui você encontra todas as informações sobre os ministérios da Pibaf',
-    image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg'
+
   };
 
   worship: WorshipType = {
@@ -86,38 +84,7 @@ export class MainPageLayoutComponent implements AfterViewInit, OnInit{
     }]
 
   events: EventsType[] = [
-    {
-      id: 1,
-      title: 'Evento 1Evento 1Evento 1Evento 1',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
-      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg',
-      date: '2021-09-01'
 
-    },
-    {
-      id: 1,
-      title: 'Evento 1Evento 1Evento 1Evento 1',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
-      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg',
-      date: '2021-09-01'
-
-    },
-    {
-      id: 1,
-      title: 'Evento 1Evento 1Evento 1Evento 1',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
-      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg',
-      date: '2021-09-01'
-
-    },
-    {
-      id: 1,
-      title: 'Evento 1Evento 1Evento 1Evento 1',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Nullam nec nunc nec nunc.',
-      image: 'https://assets.website-files.com/5e4d1978346763004ee3ff5a/5e4d796a3d4f67b13ea0f197_image-lr-1.jpg',
-      date: '2021-09-01'
-
-    }
   ]
 
   truncateContent(content: string, limit: number = 150): string {
@@ -128,7 +95,8 @@ export class MainPageLayoutComponent implements AfterViewInit, OnInit{
     private branchService: BranchService,
     private bannerService: BannerService,
     private layoutService: LayoutService,
-    private router: Router) {
+    private router: Router,
+    private missionService: MissionService) {
   }
   currentURL='';
   branch = {
@@ -193,10 +161,19 @@ export class MainPageLayoutComponent implements AfterViewInit, OnInit{
     )
   }
 
+  getMission(){
+    this.missionService.getMissionPublic().subscribe(
+      mission => {
+        this.missions = mission;
+      }
+    );
+  }
+
   ngOnInit(): void {
     this.getBranch();
     this.getBanner();
     this.getLayout();
+    this.getMission();
   }
 
   ngAfterViewInit(): void {

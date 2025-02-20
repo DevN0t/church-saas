@@ -40,7 +40,9 @@ export class MissionsPageComponent implements OnInit {
         description: mission.description,
         image: mission.image // Correctly fill the logo field
       });
-      this.image = mission.image; // Store the current logo image
+      if (mission.image != null) {
+        this.image = mission.image;
+      } // Store the current logo image
     });
   }
 

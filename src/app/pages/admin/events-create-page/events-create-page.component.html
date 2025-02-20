@@ -1,14 +1,14 @@
-<div [formGroup]="missionForm" class="w-[calc(100svw)] bg-neutral-50 h-full py-10 max-sm:px-10 max-xl:px-20 items-center gap-2 flex flex-col">
+<div [formGroup]="eventsForm" class="w-[calc(100svw)] bg-neutral-50 h-full py-10 max-sm:px-10 max-xl:px-20 items-center gap-2 flex flex-col">
   <div class="w-2/3 max-xl:w-full flex flex-col justify-center">
-    <div class="w-full text-2xl">Ministérios</div>
-    <div class="w-full text-lg text-neutral-500">Ajustes de ministério</div>
+    <div class="w-full text-2xl">Eventos</div>
+    <div class="w-full text-lg text-neutral-500">Ajustes de eventos</div>
   </div>
   <div class="max-xl:w-full w-2/3  flex justify-center flex-col gap-4 items-center">
 
     <div class="w-full flex justify-end">
       <label class="form-control max-xl:w-full w-1/2 flex gap-1 flex-col items-start">
         <div class="label p-0">
-          <span class="label-text text-neutral-900 font-medium">Titulo de ministério</span>
+          <span class="label-text text-neutral-900 font-medium">Titulo do evento</span>
           <span class="text-red-400">*</span>
         </div>
         <input formControlName="title" type="text" placeholder="Informe o titulo do ministério" class="input bg-neutral-50 input-md input-bordered w-full" />
@@ -17,7 +17,7 @@
     <div class="w-full flex justify-end">
       <label class="form-control max-xl:w-full w-1/2 flex gap-1 flex-col items-start">
         <div class="label p-0">
-          <span class="label-text text-neutral-900 font-medium">Descrição do ministério</span>
+          <span class="label-text text-neutral-900 font-medium">Descrição do evento</span>
           <span class="text-red-400">*</span>
         </div>
         <input formControlName="description" type="text" placeholder="Informe a descrição desejada" class="input bg-neutral-50 input-md input-bordered w-full" />
@@ -26,35 +26,47 @@
     <div class="w-full flex justify-end">
       <label class="form-control max-xl:w-full w-1/2 flex gap-1 flex-col items-start">
         <div class="label p-0">
-          <span class="label-text text-neutral-900 font-medium">Dia das reuniões</span>
+          <span class="label-text text-neutral-900 font-medium">Data</span>
           <span class="text-red-400">*</span>
         </div>
-        <input formControlName="day" type="text" placeholder="Informe o dia da semana" class="input bg-neutral-50 input-md input-bordered w-full" />
+        <input
+          formControlName="date"
+          type="text"
+          placeholder="Informe a data"
+          class="input bg-neutral-50 input-md input-bordered w-full"
+          (input)="formatDateInput($event)"
+        />
       </label>
     </div>
     <div class="w-full flex justify-end">
       <label class="form-control max-xl:w-full w-1/2 flex gap-1 flex-col items-start">
         <div class="label p-0">
-          <span class="label-text text-neutral-900 font-medium">Horário das reuniões</span>
+          <span class="label-text text-neutral-900 font-medium">Hora</span>
           <span class="text-red-400">*</span>
         </div>
-        <input formControlName="time" type="text" placeholder="Informe o horário das reuniões" class="input bg-neutral-50 input-md input-bordered w-full" />
+        <input
+          formControlName="time"
+          type="text"
+          placeholder="Informe a data"
+          class="input bg-neutral-50 input-md input-bordered w-full"
+          (input)="formatTimeInput($event)"
+        />
       </label>
     </div>
     <div class="w-full flex justify-end">
       <label class="form-control max-xl:w-full w-1/2 flex gap-1 flex-col items-start">
         <div class="label p-0">
-          <span class="label-text text-neutral-900 font-medium">Local das reuniões</span>
+          <span class="label-text text-neutral-900 font-medium">Local do evento</span>
           <span class="text-red-400">*</span>
         </div>
-        <input formControlName="location" type="text" placeholder="Informe o horário das reuniões" class="input bg-neutral-50 input-md input-bordered w-full" />
+        <input formControlName="location" type="text" placeholder="Informe o local do evento" class="input bg-neutral-50 input-md input-bordered w-full" />
       </label>
     </div>
 
     <div class="w-full flex justify-end">
       <label class="form-control max-xl:w-full w-1/2 flex flex-col gap-1 items-start">
         <div class="label p-0">
-          <span class="label-text text-neutral-900 font-medium">Foto principal ministério</span>
+          <span class="label-text text-neutral-900 font-medium">Foto principal evento</span>
           <span class="text-red-400">*</span>
         </div>
         <div class="w-full flex justify-end">
@@ -86,7 +98,7 @@
 
     <div class="w-full flex justify-end">
       <div class="w-1/2 max-md:w-full max-xl:w-1/2 max-md:flex-col-reverse flex gap-4 justify-end">
-        <button class="w-1/3 max-md:w-full max-xl:w-1/3 text-neutral-600 btn btn-md btn-ghost border-[.5px] border-neutral-200" (click)="navigateTo('/painel/ministerio')">
+        <button class="w-1/3 max-md:w-full max-xl:w-1/3 text-neutral-600 btn btn-md btn-ghost border-[.5px] border-neutral-200" (click)="navigateTo('/painel/eventos')">
           Cancelar
         </button>
         <button (click)="submit()" class="w-1/3 max-md:w-full max-xl:w-1/3 btn btn-md bg-neutral-900 text-white">

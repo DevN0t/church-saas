@@ -1,6 +1,9 @@
-import {Component, HostListener, Input} from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {NgClass, NgForOf, NgStyle} from '@angular/common';
 import {PastorType} from '../../../types/pastor.type';
+import {GlobalService} from '../../../services/global.service';
+import {LayoutType} from '../../../types/layout.type';
+import {LayoutService} from '../../../services/layout.service';
 
 @Component({
   selector: 'app-carousel',
@@ -12,17 +15,27 @@ import {PastorType} from '../../../types/pastor.type';
   ],
   styleUrls: ['./carousel.component.css']
 })
-export class CarouselComponent {
+export class CarouselComponent implements OnInit{
+  constructor(
+    private layoutService: LayoutService
+  ) {
+  }
   @Input() images: PastorType[] = [];
 
   @Input() title: string = '';
   @Input() subtitle: string = '';
-  @Input() fontColor: string = '#000000';
   currentIndex = 0;
   visibleImages = 3; // Quantidade de imagens visíveis por padrão
 
   ngOnInit() {
+    this.layoutService.getLayoutPublic().subscribe(layout => {
+      this.layout = layout;
+    });
     this.updateVisibleImages();
+  }
+
+  layout : LayoutType = {
+    bannerFontColor: '', bgColor: '', fontColor: '', fontHighlightColor: '', headerBgColor: ''
   }
 
   @HostListener('window:resize')
